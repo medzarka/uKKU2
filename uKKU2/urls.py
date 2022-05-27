@@ -38,3 +38,8 @@ admin.site.site_title = settings.ADMIN_SITE_SITE_TITLE
 
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+admin.autodiscover()
+admin.site.enable_nav_sidebar = False
+
+

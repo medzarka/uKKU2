@@ -90,17 +90,16 @@ sudo apt-get install postgresql postgresql-contrib libpq-dev python3-dev
 ```
 
 Next step is to configure postgres database, user and permissions. As a sample, we will use 
-'uKKU2_TNM' as a database name, a username and a password. You can use your own information.
+'ukku2tnm' as a database name, a username and a password. You can use your own information.
 
 ```
 sudo -u postgres psql
-ALTER USER postgres PASSWORD '{your password for postgres user}'; 
-CREATE DATABASE uKKU2_TNM;
-CREATE USER uKKU2_TNM WITH ENCRYPTED PASSWORD 'uKKU2_TNM';
-ALTER ROLE uKKU2_TNM SET client_encoding TO 'utf8';
-ALTER ROLE uKKU2_TNM SET default_transaction_isolation TO 'read committed';
-ALTER ROLE uKKU2_TNM SET timezone TO 'UTC';
-GRANT ALL PRIVILEGES ON DATABASE uKKU2_TNM TO uKKU2_TNM;
+CREATE DATABASE ukku2tnm;
+CREATE USER ukku2tnm WITH ENCRYPTED PASSWORD '{password here}';
+ALTER ROLE ukku2tnm SET client_encoding TO 'utf8';
+ALTER ROLE ukku2tnm SET default_transaction_isolation TO 'read committed';
+ALTER ROLE ukku2tnm SET timezone TO 'UTC';
+GRANT ALL PRIVILEGES ON DATABASE ukku2tnm TO ukku2tnm;
 \q
 ```
 
@@ -109,11 +108,11 @@ user following the following template this form:
 ```
 nano ~/.pgpass
 localhost:5432:*:postgres:{postgres user password}
-localhost:5432:uKKU2_TNM:uKKU2_TNM:uKKU2_TNM
+localhost:5432:ukku2tnm:ukku2tnm:{ password here}
 ```
 And do not forget to secure access to the .pgpass file :
 ```
-chmod 600 ~/.pgpass
+chmod 0600 ~/.pgpass
 ```
 Then, the database is ready.
 
@@ -180,12 +179,48 @@ MYSITE_ADMIN_SITE_TITLE = "uKKU2 Quality Document Manager"
 source ~/web/data/uKKU2_data_TNM/env/uKKU2/bin/activate
 python manage.py makemigrations
 python manage.py migrate
+python manage.py createsuperuser
+python manage.py collectstatic
 ```
 
-
 ### Step 4 : Start the site as a ubuntu service
-TODO
+
+This step aims to create a gunicorn service for the uKKU2 site.
+
+1. create the file **/etc/systemd/system/ukku2tnm.gunicorn.service**:
+```
+sudo nano /etc/systemd/system/ukku2tnm.gunicorn.service
+```
+2. put the following content into it:
+```
+[Unit]
+Description=ukku2tnm.gunicorn daemon
+After=network.target
+
+[Service]
+User=mzarka
+Group=www-data
+WorkingDirectory=/home/mzarka/web/sites/uKKU2_TNM
+ExecStart=/home/mzarka/web/data/uKKU2_data_TNM/env/uKKU2/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/home/mzarka/web/data/uKKU2_data_TNM/run/ukku2tnm.gunicorn.sock \
+          uKKU2.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+```
+
+3. start the service and enable it:
+```
+sudo systemctl start ukku2tnm.gunicorn.service
+sudo systemctl enable ukku2tnm.gunicorn.service
+sudo systemctl status ukku2tnm.gunicorn.service
+```
+The last instruction should show that the service is active.
+
+
 ### Step 5 : Configure NGINX
-TODO
+**TODO**
 ### Step 6 : Site, database and media backups
-TODO
+**TODO**
