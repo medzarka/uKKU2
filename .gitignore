@@ -8,8 +8,8 @@ docs/passwords.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
-*.pyc
-*.py[cod]
+**/*.pyc
+**/*.py[cod]
 *$py.class
 
 # C extensions
