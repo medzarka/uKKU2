@@ -220,6 +220,12 @@ sudo systemctl status ukku2tnm.gunicorn.service
 The last instruction should show that the service is active.
 
 
+in order to restart the uKKU2 site, type the following command:
+
+```
+sudo systemctl restart ukku2tnm.gunicorn.service
+```
+
 ### Step 5 : Configure NGINX
 **TODO**
 ### Step 6 : Site, database and media backups
