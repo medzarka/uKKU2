@@ -10,7 +10,7 @@ def createDir(dirname):
 
 ###### Site security
 site_dns_url = 'quality.bluewaves.ovh'
-site_data_path = 'uKKU2_data'
+site_data_path = 'uKKU2_data_TNM'
 site_SECRET_KEY = 'django-insecure-+yym644td@cz*-+c*&@5&@)xvx%54(m3mu7l*6n#1@k0c_t+5s'
 site_DEBUG_MODE = True
 site_SESSION_COOKIE_SECURE = False
