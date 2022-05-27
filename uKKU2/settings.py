@@ -16,7 +16,7 @@ import uKKU2.site_conf as site_conf
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-DATA_DIR = os.path.join(os.environ['HOME'], site_conf.site_data_path)
+DATA_DIR = os.path.join(os.environ['HOME'], 'web', 'data',  site_conf.site_data_path)
 site_conf.createDir(DATA_DIR)
 print(f'[DIR] the base dir is {BASE_DIR}')
 print(f'[DIR] the data dir is {DATA_DIR}')
