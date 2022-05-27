@@ -1,0 +1,2 @@
+git clone https://github.com/medzarka/django.git --> password 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
+cd django

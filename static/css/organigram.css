@@ -1,0 +1,29 @@
+#tree {
+    width: 100%;
+    height: 100%;
+}
+
+
+/*partial*/
+
+
+.node.assistant rect {
+    fill: #F0EAD6;
+}
+
+.node.level0 rect {
+    fill: #034F84;
+}
+
+.node.level1 rect {
+    fill: #BD3D3A;
+}
+.node.level2 rect {
+    fill: #D69C2F;
+}
+
+.node.level3 rect {
+    fill: #92B558;
+}
+
+

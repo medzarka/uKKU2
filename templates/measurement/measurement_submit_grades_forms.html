@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Submit Grades</h1>
+    </div>
+
+
+
+    <div class="card shadow mb-12">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Grades File submission</h6>
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <form id="form_40901" class="appnitro" enctype="multipart/form-data" method="post"
+                      action="{% url submit_link %}">{% csrf_token %}
+                    <div class="form_description">
+                        <div class="alert alert alert-warning" role="alert">
+                            <p>Submit the grades file that you picked from Academia.</p>
+                            <p>Only Academia generated files are accepted.</p>
+                            <p>Only one grades file per submission is accepted.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1">Get the grade file from academia and upload it here</label>
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1" name="grades">
+                        <br>
+                        <input id="saveForm" class="btn btn-primary" type="submit" name="submit"
+                               value="Compute Statistics"/>
+                    </div>
+                </form>
+
+                <br><br>
+                <a class="btn btn-danger" href="{% url cancel_link %}" role="button">Cancel</a>
+
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

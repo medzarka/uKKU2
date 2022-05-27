@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Grades Analysis</h1>
+    </div>
+
+
+    <div class="card shadow mb-12">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Grades File submission</h6>
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <br>
+                {% if show_result %}
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Measurement</th>
+                            <th scope="col">Value</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Location</td>
+                            <td>{{ location }}</td>
+                        </tr>
+                        <tr>
+                            <td>Section</td>
+                            <td>{{ section }}</td>
+                        </tr>
+
+                        {% if do_save %}
+                            <tr>
+                                <td>College</td>
+                                <td>{{ college }}</td>
+                            </tr>
+                            <tr>
+                                <td>Department</td>
+                                <td>{{ department }}</td>
+                            </tr>
+                            <tr>
+                                <td>Course</td>
+                                <td>{{ course_code }} - {{ course }}  </td>
+                            </tr>
+                            <tr>
+                                <td>Teachers</td>
+                                <td>
+                                    {% for one in teachers %}
+                                        <li> {{ one.name_en }}</li>
+                                    {% endfor %}</td>
+                            </tr>
+                        {% endif %}
+
+
+                        <tr>
+                            <td>Mean</td>
+                            <td>{{ mean }}</td>
+                        </tr>
+                        <tr>
+                            <td>Standard Deviation</td>
+                            <td>{{ std }}</td>
+                        </tr>
+                        <tr>
+                            <td>Skewness</td>
+                            <td>{{ skewness }}</td>
+                        </tr>
+                        <tr>
+                            <td>Correlation (Mids/Finals)</td>
+                            <td>{{ correlation }}</td>
+                        </tr>
+                        <tr>
+                            <td>Minimum Value</td>
+                            <td>{{ min }}</td>
+                        </tr>
+                        <tr>
+                            <td>Maximum Value</td>
+                            <td>{{ max }}</td>
+                        </tr>
+                        <tr>
+                            <td>Grades Histogram</td>
+                            <td><img style="width:70%;height:70%;" src="{{ domain }}/{{ histogram }}"
+                                     alt=" {{ histogram }}"></td>
+                        </tr>
+                        <tr>
+                            <td>Analysis Hints (Do not use it as your own analysis !!!)</td>
+
+                            <td>
+                                {% for one in analysis %}
+                                    <li> {{ one }}</li>
+                                {% endfor %}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+                {% if do_save %}
+                    <form method="post" action="{% url save_link %}">{% csrf_token %}
+                        <div class="form-group">
+                            <label for="comment"><b><h3><span class="badge badge-info">Teacher Analysis</span></h3>
+                            </b></label>
+                            <textarea class="form-control" name="analysis" rows="5" id="comment"></textarea>
+                        </div>
+                        <input type="hidden" name="mean" value="{{ mean }}"/>
+                        <input type="hidden" name="std" value="{{ std }}"/>
+                        <input type="hidden" name="skewness" value="{{ skewness }}"/>
+                        <input type="hidden" name="correlation" value="{{ correlation }}"/>
+                        <input type="hidden" name="min" value="{{ min }}"/>
+                        <input type="hidden" name="max" value="{{ max }}"/>
+                        <input type="hidden" name="section" value="{{ section }}"/>
+                        <input type="hidden" name="histogram" value="{{ histogram }}"/>
+                        <input type="hidden" name="filename" value="{{ filename }}"/>
+                        <input type="hidden" name="grades" value="{{ grades }}"/>
+
+
+                        <button type="submit" class="btn btn-primary">Save the Report</button>
+                    </form>
+                {% endif %}
+
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

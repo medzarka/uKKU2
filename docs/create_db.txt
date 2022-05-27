@@ -1,0 +1,55 @@
+######################################
+install postgresql 
+sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get install postgresql postgresql-contrib libpq-dev python3-dev
+
+
+
+######################################
+# config postgresql databases and users
+
+# the postgres user password will be  NHYXLMdeZQgAF
+sudo passwd postgres --> NHYXLMdeZQgAF
+
+## config postgresql for ooesco
+sudo -u postgres psql
+ALTER USER postgres PASSWORD 'NHYXLMdeZQgAF'; 
+CREATE DATABASE ooesco;
+CREATE USER ooesco WITH ENCRYPTED PASSWORD 'ooesco';
+ALTER ROLE ooesco SET client_encoding TO 'utf8';
+ALTER ROLE ooesco SET default_transaction_isolation TO 'read committed';
+ALTER ROLE ooesco SET timezone TO 'UTC';
+GRANT ALL PRIVILEGES ON DATABASE ooesco TO ooesco;
+\q
+
+
+######################################
+# config .pgpass file
+
+nano ~/.pgpass
+add :
+    localhost:5432:*:postgres:NHYXLMdeZQgAF
+    localhost:5432:ooesco:ooesco:ooesco
+the save
+chmod 600 ~/.pgpass
+
+
+
+
+######################################
+# follow the https://guillaume-martin.github.io/postgresql-backup.html guide for backups
+
+
+######################################
+# periodic backups with cron
+crontab -e
+add :
+    @daily /home/mzarka/django/ooesco/backups/database/bin/backup.sh -c /home/mzarka/django/ooesco/backups/database/bin/pg_backup.config
+
+
+
+#####################################
+
+to restore
+
+pg_restore -d db_name /path/to/your/file/dump_name.tar -c -U db_user

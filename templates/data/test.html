@@ -1,0 +1,48 @@
+
+
+{% extends "base.html" %}
+{% block content %}
+
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">{{ Big_Title }}</h1>
+
+
+        {% if add_button %}
+            <a href="add_link" class="btn btn-success btn-icon-split">
+
+        {% endif %}
+        <span class="text">Add New </span>
+        </a>
+    </div>
+
+
+
+    <div class="card shadow mb-12">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Little_Title</h6>
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+                {% regroup object_list by menu as item_menu_list %}
+                {% for menu_section in item_menu_list %}
+                    <li>{{ menu_section.grouper }}
+                        <ul>
+                            {% for item in menu_section.list %}
+                                <li>{{ item.name|title }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+

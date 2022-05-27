@@ -1,0 +1,17 @@
+
+
+
+sudo apt install python3-venv
+mkdir env
+cd env
+python3 -m venv ooesco
+cd ..
+
+source env/ooesco/bin/activate
+
+
+pip install django
+pip install gunicorn psycopg2-binary
+pip install django-ckeditor
+
+django-admin startproject site

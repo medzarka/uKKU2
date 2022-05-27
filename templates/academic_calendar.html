@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Academic Calendar</h1>
+        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-download fa-sm text-white-50"></i> Export the Academic Calendar</a>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Semester Progress</div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ progress }}</div>
+                                </div>
+                                <div class="col">
+                                    <div class="progress progress-sm mr-2">
+                                        <div class="progress-bar bg-info" role="progressbar"
+                                             style="width: {{ progress }}%"
+                                             aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Teaching Progress
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ teaching_progress }}</div>
+                                </div>
+                                <div class="col">
+                                    <div class="progress progress-sm mr-2">
+                                        <div class="progress-bar bg-info" role="progressbar"
+                                             style="width: {{ teaching_progress }}%"
+                                             aria-valuenow="{{ teaching_progress }}" aria-valuemin="0"
+                                             aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-flag fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Pending Requests Card Example -->
+        {% if show_actual_week %}
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-warning shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Actual Week
+                                    Number
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a
+                                        href="#WEEK{{ week }}">{{ week }}</a>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-flag fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+
+    <!-- Content Row -->
+
+
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Content Column -->
+
+        {% for week, days in weeks.items %}
+            <div class="col-xl-4">
+
+                <!-- Approach -->
+                <div class="card shadow">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary" id="WEEK{{ week }}">Week #{{ week }} </h6>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-sm">
+                            <tbody>
+                            {% for day in days %}
+                                {% if day.day_in_week_order == 6 or  day.day_in_week_order == 7 %}
+                                    <tr class="table-warning">
+                                        {% elif actual_day == day.day_hijri_date %}
+                                    <tr class="table-success">
+                                        {% else %}
+                                    <tr>
+                                {% endif %}
+
+                            <td>
+                                <p style="font-size: 12px;">
+                                    <span class="badge badge-secondary">{{ day.day_name }}</span>
+                                    <br>{{ day.day_date }}<br>{{ day.day_hijri_date }}
+                                </p></td>
+                            <td></td>
+
+
+
+                            </tr>
+                            {% endfor %}
+
+
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        {% endfor %}
+    </div>
+
+    </div>
+    <!-- /.container-fluid -->
+
+{% endblock %}

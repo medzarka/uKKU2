@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load table_tags %}
+
+
+{% block content %}
+    <table cellpadding="0" cellspacing="0" border="0" id="example">
+        <thead>
+        <tr>
+            <th>Groups Management</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+
+    <script type="text/javascript" language="javascript" class="init">
+        $(document).ready(function () {
+            $('#example').dataTable({
+                "processing": true,
+                "ajax": {
+                    "processing": true,
+                    "url": "{% url 'group_json' %}",
+                    "dataSrc": ""
+                },
+
+                "columns": [
+                    {"id": "group.name"},
+                    {"name": "pk"}
+                ]
+            });
+        });
+    </script>
+{% endblock %}

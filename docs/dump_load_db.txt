@@ -1,0 +1,7 @@
+
+./manage.py dumpdata --exclude auth.permission > db.json
+./manage.py dumpdata > db.json
+
+
+
+./manage.py loaddata db.json

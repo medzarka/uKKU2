@@ -1,0 +1,17 @@
+[Unit]
+Description=ooesco.gunicorn daemon
+Requires=ooesco.gunicorn.socket
+After=network.target
+
+[Service]
+User=mzarka
+Group=www-data
+WorkingDirectory=/home/mzarka/django/ooesco/ooesco_site
+ExecStart=/home/mzarka/django/ooesco/env/ooesco/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/home/mzarka/django/ooesco/run/ooesco.gunicorn.sock \
+          ooesco_site.wsgi:application
+
+[Install]
+WantedBy=multi-user.target

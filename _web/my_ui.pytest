@@ -1,0 +1,271 @@
+
+
+
+
+
+################################
+##################  Basic Content
+
+
+################################
+##################" TEXT
+class text_element:
+    def __init__(self, title='', text=''):
+        self.title = title
+        self.text = text
+        self.type = UIElementTypeEnum.TEXT_ELEMENT
+
+
+################################
+##################" CARDS ROW
+class cards_row:
+    def __init__(self):
+        self.cards = []
+        self.type = UIElementTypeEnum.CARD_ELEMENT
+
+    def addCard(self, card):
+        self.cards.append(card)
+
+
+class card:
+    def __init__(self, type, text, value, progress_value=-1, progress_min=0, progress_max=0, icon_type=''):
+        self.type = type
+        self.text = text
+        self.value = value
+        self.progress_value = progress_value
+        self.progress_min = progress_min
+        self.progress_max = progress_max
+        self.icon_type = icon_type
+
+
+################################
+################## TABLES (INFOTABLE and DATATABLE)
+class infotable_element:
+    def __init__(self, title='', data=[], is_table_striped=True, is_table_hover=True, is_table_bordered=True):
+        self.title = title
+        self.type = UIElementTypeEnum.INFOTABLE_ELEMENT
+
+        self.data = data
+        self.is_table_striped = is_table_striped
+        self.is_table_hover = is_table_hover
+        self.is_table_bordered = is_table_bordered
+
+    def addDataRow(self, row):
+        self.data.append(row)
+
+
+class datatable_element:
+    def __init__(self, title='', footer=True, is_table_striped=True, is_table_hover=True, is_table_bordered=True):
+        self.title = title
+        self.type = UIElementTypeEnum.DATATABLE_ELEMENT
+
+        self.header_elements = None
+        self.body_elements = []
+        self.footer = footer
+        self.is_table_striped = is_table_striped
+        self.is_table_hover = is_table_hover
+        self.is_table_bordered = is_table_bordered
+
+    def setHeader(self, row):
+        self.header_elements = row
+
+    def addBodyRow(self, row):  # the row is a list of table_cells
+        self.body_elements.append(row)
+
+
+@unique
+class RowClassEnum(Enum):
+    NORMAL = ''
+    TABLE_ACTIVE = 'table-active'
+    TABLE_PRIMARY = 'table-primary'
+    TABLE_SECONDARY = 'table-secondary'
+    TABLE_SUCCESS = 'table-success'
+    TABLE_DANGER = 'table-danger'
+    TABLE_WARNING = 'table-warning'
+    TABLE_INFO = 'table-info'
+    TABLE_LIGHT = 'table-light'
+    TABLE_DARK = 'table-dark'
+
+
+@unique
+class BadgeClassEnum(Enum):
+    BADGE_PRIMARY = 'badge-primary'
+    BADGE_SECONDARY = 'badge-secondary'
+    BADGE_SUCCESS = 'badge-success'
+    BADGE_DANGER = 'badge-danger'
+    BADGE_WARNING = 'badge-warning'
+    BADGE_INFO = 'badge-info'
+    BADGE_LIGHT = 'badge-light'
+    BADGE_DARK = 'badge-dark'
+
+
+@unique
+class CellTypeEnum(Enum):
+    TEXT_CELL = 'text'
+    BADGE_CELL = 'badge'
+    LINK_CELL = 'link'
+
+
+class table_row:
+    def __init__(self, row_class=RowClassEnum.TABLE_ACTIVE):
+        self.row_class = row_class
+        self.cells = []
+
+    def add_cell_to_row(self, cell):
+        self.cells.append(cell)
+
+
+class table_cell:
+    def __init__(self, cell_class=RowClassEnum.TABLE_ACTIVE, cell_type=CellTypeEnum.TEXT_CELL, text='', link='',
+                 link_parameters=dict(), tag_type=BadgeClassEnum.BADGE_PRIMARY):
+        self.cell_class = cell_class
+        self.cell_type = cell_type
+        self.text = text
+        self.link = link
+        self.link_parameters = link_parameters
+        self.tag_type = tag_type
+
+    @property
+    def getParameters_as_html_link(self):
+        tmp = ''
+        for key, value in self.link_parameters.items():
+            if tmp == '':
+                tmp = str(key) + '=' + str(value)
+            else:
+                tmp = tmp + '&' + str(key) + '=' + str(value)
+        return tmp
+
+
+################################
+##################  CALENDAR
+
+@unique
+class CalendarViewTypeEnum(Enum):
+    ONE_WEEK = 1
+    THREE_WEEKs = 2
+    ALL_WEEKS = 3
+
+
+class calendar_element:
+    def __init__(self, title='', calendar_view_type=CalendarViewTypeEnum.ALL_WEEKS):
+        self.title = title
+        self.calendar_view_type = calendar_view_type
+        self.type = UIElementTypeEnum.CALENDAR_ELEMENT
+        self.weeks = []
+
+    def addWeek(self, week):
+        self.weeks.append(week)
+
+
+class week:
+    def __init__(self, week_number):
+        self.week_number = week_number
+        self.days = []
+
+    def addDay(self, day):
+        self.days.append(day)
+
+
+class day:
+    def __init__(self, day_date_text1, day_date_text2, day_number):
+        self.day_number = day_number
+        self.day_date_text1 = day_date_text1
+        self.day_date_text2 = day_date_text2
+        self.events = []
+
+    def addEvent(self, event):
+        self.events.append(event)
+
+
+class event:
+    def __init__(self, text='', link='', link_parameters={}, badge_type=BadgeClassEnum.BADGE_PRIMARY):
+        self.text = text
+        self.link = link
+        self.link_parameters = link_parameters
+        self.badge_type = badge_type
+
+    @property
+    def getParameters_as_html_link(self):
+        tmp = ''
+        for key, value in self.link_parameters.items():
+            if tmp == '':
+                tmp = str(key) + '=' + str(value)
+            else:
+                tmp = tmp + '&' + str(key) + '=' + str(value)
+        return tmp
+
+
+################################
+##################  FROM
+
+class form_element:
+    def __init__(self, title, form_id, action, method):
+        self.title = title
+        self.action = action
+        self.form_id = form_id
+        self.method = method
+        self.type = UIElementTypeEnum.FORM_ELEMENT
+        self.fields = []
+
+    def addField(self, field):
+        self.fields.append(field)
+
+
+@unique
+class FormInputTypeEnum(Enum):
+    TEXT_INPUT = 'text'
+    SUBMIT_INPUT = 'submit'
+    HIDDEN_INPUT = 'hidden'
+    EMAIL_INPUT = 'email'
+    TEXTAREA_INPUT = 'textarea'
+    PASSWORD_INPUT = 'password'
+    COLOR_INPUT = 'color'
+    FILE_INPUT = 'file'
+    DATE_INPUT = 'date'
+    TIME_INPUT = 'time'
+    WEEK_INPUT = 'week'
+    DATETIMELOCAL_INPUT = 'datetime-local'
+    MONTH_INPUT = 'month'
+    RESET_INPUT = 'reset'
+    SELECT_INPUT = 'select'
+
+    BUTTON_INPUT = 'button'
+    CHECKBOX_INPUT = 'checkbox'
+    IMAGE_INPUT = 'image'
+    NUMBER_INPUT = 'number'
+    RADIO_INPUT = 'radio'
+    RANGE_INPUT = 'range'
+    SEARCH_INPUT = 'search'
+    TEL_INPUT = 'tel'
+    URL_INPUT = 'url'
+
+
+@unique
+class ButtonClassEnum(Enum):
+    BTN_PRIMARY = 'btn-primary'
+    BTN_SECONDARY = 'btn-secondary'
+    BTN_SUCCESS = 'btn-success'
+    BTN_DANGER = 'btn-danger'
+    BTN_WARNING = 'btn-warning'
+    BTN_INFO = 'btn-info'
+    BTN_LIGHT = 'btn-light'
+    BTN_DARK = 'btn-dark'
+
+
+class field:
+    def __init__(self, input_label, name, input_type=FormInputTypeEnum.TEXT_INPUT, value='', size=30, maxlength=30,
+                 placeholder='',
+                 is_readonly=False,
+                 is_disabled=False, is_required=True, button_class=ButtonClassEnum.BTN_PRIMARY, data={}):
+        self.input_label = input_label
+        self.input_type = input_type
+        self.name = name
+        self.value = value
+        self.size = size
+        self.maxlength = maxlength
+        self.placeholder = placeholder
+        self.is_readonly = is_readonly
+        self.is_disabled = is_disabled
+        self.is_required = is_required
+        self.button_class = button_class
+        self.data = data
