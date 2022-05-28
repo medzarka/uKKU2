@@ -90,9 +90,9 @@ class email(models.Model):
         res += f'<p>Best Regards.</p>'
         res += f'<p>--------- ' \
                f'<br>uKKU2 team - 2022' \
-               f'<br>Computer Science Department<br>' \
-               f'<br>College of Science and Arts in Tanumah<br>' \
-               f'King Khalid University</p>'
+               f'<br>Computer Science Department' \
+               f'<br>College of Science and Arts in Tanumah' \
+               f'<br>King Khalid University</p>'
         res += '</html>'
         return res
 
