@@ -230,7 +230,6 @@ sudo systemctl restart ukku2tnm.gunicorn.service
 In order to make backups for the database and the media files of the uKKU2 site, we use the 
 **django-dbbackup** package.
 
-#### Backups
 * In order to make backups for the database and the media files, we type the following command:
 ```
 python manage.py dbbackup --compress

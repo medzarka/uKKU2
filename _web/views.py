@@ -84,7 +84,7 @@ def reset_password(request):
                 __email = email(email_receiver=_email
                                 , email_title='Quality uKKU2 Password Update.'
                                 , email_message=f'Your new password is {_password}. '
-                                                f'You can login with the username {_user.username}')
+                                                f'You can login with the username {_user.username} .')
                 __email.save()
                 __email.send()
                 messages.success(request,
