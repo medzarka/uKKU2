@@ -144,7 +144,7 @@ class _page_quality_export(Abstract_UI_Page):
                     _cell1 = table_cell(cell_centent=_text1)
                     _row.add_cell_to_row(_cell1)
 
-                    _text1 = ui_text_element(text=_doc.teacher.first_name,
+                    _text1 = ui_text_element(text=_doc.teacher.last_name,
                                              color=UI_TEXT_COLOR_Enum.TEXT_DARK)
                     _cell1 = table_cell(cell_centent=_text1)
                     _row.add_cell_to_row(_cell1)
@@ -322,7 +322,7 @@ class _page_quality_export(Abstract_UI_Page):
                     _cell1 = table_cell(cell_centent=_text1)
                     _row.add_cell_to_row(_cell1)
 
-                    _text1 = ui_text_element(text=str(_doc.gradeFile.teacher.first_name),
+                    _text1 = ui_text_element(text=str(_doc.gradeFile.teacher.last_name),
                                              color=UI_TEXT_COLOR_Enum.TEXT_DARK)
                     _cell1 = table_cell(cell_centent=_text1)
                     _row.add_cell_to_row(_cell1)
@@ -347,7 +347,7 @@ class _page_quality_export(Abstract_UI_Page):
                     _row.add_cell_to_row(_cell1)
 
                     if _doc.cfi_reviewer is not None:
-                        _text1 = ui_text_element(text=str(_doc.cfi_reviewer.first_name),
+                        _text1 = ui_text_element(text=str(_doc.cfi_reviewer.last_name),
                                                  color=UI_TEXT_COLOR_Enum.TEXT_DARK)
                         _cell1 = table_cell(cell_centent=_text1)
                         _row.add_cell_to_row(_cell1)

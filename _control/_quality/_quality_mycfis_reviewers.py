@@ -95,7 +95,7 @@ class _page_mycfis_reviewers(Abstract_UI_Page):
                     else:
                         _row = table_row(row_class=UI_Row_Cell_Class_Enum.TABLE_SUCCESS)
 
-                    _text1 = ui_text_element(text=str(_affectation.user.first_name), color=UI_TEXT_COLOR_Enum.TEXT_DARK)
+                    _text1 = ui_text_element(text=str(_affectation.user.last_name), color=UI_TEXT_COLOR_Enum.TEXT_DARK)
                     _cell1 = table_cell(cell_centent=_text1)
                     _row.add_cell_to_row(_cell1)
 
@@ -103,7 +103,7 @@ class _page_mycfis_reviewers(Abstract_UI_Page):
                         _text1 = ui_text_element(text='No reviewer Affected',
                                                  color=UI_TEXT_COLOR_Enum.TEXT_DARK)
                     else:
-                        _text1 = ui_text_element(text=str(_affectation.reviewer.first_name),
+                        _text1 = ui_text_element(text=str(_affectation.reviewer.last_name),
                                                  color=UI_TEXT_COLOR_Enum.TEXT_DARK)
                     _cell1 = table_cell(cell_centent=_text1)
                     _row.add_cell_to_row(_cell1)
@@ -130,9 +130,9 @@ class _page_mycfis_reviewers(Abstract_UI_Page):
             head_group = Group.objects.get(name=_reviewers_group_name)
 
             for _aff in ReviewerAffectations.objects.filter(semester=_actual_semester).order_by('user'):
-                __user_data[_aff.user.id] = _aff.user.first_name
+                __user_data[_aff.user.id] = _aff.user.last_name
                 if head_group in _aff.user.groups.all():
-                    __reviwers_data[_aff.user.id] = _aff.user.first_name
+                    __reviwers_data[_aff.user.id] = _aff.user.last_name
 
             _user_field = form_field('The Faculty Member', 'user',
                                      input_type=FormInputTypeEnum.SELECT_INPUT, list_data=__user_data)

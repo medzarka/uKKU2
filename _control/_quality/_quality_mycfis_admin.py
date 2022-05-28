@@ -75,7 +75,7 @@ class _page_mycfis_admin(Abstract_UI_Page):
                         alignment=UI_TEXT_ALIGNMENT_Enum.JUSTIFY,
                         color=UI_TEXT_COLOR_Enum.TEXT_DARK))
                     _steps.append(ui_text_element(
-                        text='Faculty: \t' + str(_section_report.teacher.first_name),
+                        text='Faculty: \t' + str(_section_report.teacher.last_name),
                         alignment=UI_TEXT_ALIGNMENT_Enum.JUSTIFY,
                         color=UI_TEXT_COLOR_Enum.TEXT_DARK))
 
@@ -108,7 +108,7 @@ class _page_mycfis_admin(Abstract_UI_Page):
                         _my_cfi.save()
 
                     if __editmode == '3':
-                        # course_cfi_id, reviewer = first_name, remark
+                        # course_cfi_id, reviewer = last_name, remark
                         __remark = self.request_obj.GET['remark']
                         __reviewer = self.request_obj.GET['reviewer']
                         _my_cfi.addRemark(__remark, __reviewer)
@@ -139,7 +139,7 @@ class _page_mycfis_admin(Abstract_UI_Page):
                         ___action = form_field('editmode', 'editmode', input_type=FormInputTypeEnum.HIDDEN_INPUT,
                                                input_value='3', is_required=True)
                         ___reviewer = form_field('reviewer', 'reviewer', input_type=FormInputTypeEnum.HIDDEN_INPUT,
-                                                 input_value=_actual_user.first_name, is_required=True)
+                                                 input_value=_actual_user.last_name, is_required=True)
                         ___selected_grade_file = form_field('section_selected', 'section_selected',
                                                             input_type=FormInputTypeEnum.HIDDEN_INPUT,
                                                             input_value=str(__section_grades_report), is_required=True)
@@ -296,7 +296,7 @@ class _page_mycfis_admin(Abstract_UI_Page):
                             _cell1 = table_cell(cell_centent=_text1)
                             _row.add_cell_to_row(_cell1)
 
-                            _text1 = ui_text_element(text=_report.gradeFile.teacher.first_name,
+                            _text1 = ui_text_element(text=_report.gradeFile.teacher.last_name,
                                                      color=UI_TEXT_COLOR_Enum.TEXT_DARK)
                             _cell1 = table_cell(cell_centent=_text1)
                             _row.add_cell_to_row(_cell1)
@@ -317,7 +317,7 @@ class _page_mycfis_admin(Abstract_UI_Page):
                             if _report.cfi_reviewer is None:
                                 _rev = ''
                             else:
-                                _rev = _report.cfi_reviewer.first_name
+                                _rev = _report.cfi_reviewer.last_name
                             _text1 = ui_text_element(text=_rev,
                                                      color=UI_TEXT_COLOR_Enum.TEXT_DARK)
                             _cell1 = table_cell(cell_centent=_text1)
