@@ -63,8 +63,8 @@ class Course(models.Model):
                                 blank=True)
 
     def __str__(self):
-        return str(
-            self.program) + ' Course : ' + self.course_code + ' --- ' + self.course_name + '--- (' + self.course_code_ar + ')'
+        return str(self.program) + ' Course : ' + self.course_code + ' --- '\
+               + self.course_name + '--- (' + self.course_code_ar + ' - ' + self.course_name_ar +')'
 
     class Meta:
         ordering = ['program', 'course_code', ]
