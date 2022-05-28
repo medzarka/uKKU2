@@ -53,7 +53,7 @@ class _page_mycfis(Abstract_UI_Page):
                     alignment=UI_TEXT_ALIGNMENT_Enum.JUSTIFY,
                     color=UI_TEXT_COLOR_Enum.TEXT_DARK))
                 _steps.append(ui_text_element(
-                    text='Section Codes : \t' + str(_section_report.section_code),
+                    text='Section Codes :  \t' + str(_section_report.section_code),
                     alignment=UI_TEXT_ALIGNMENT_Enum.JUSTIFY,
                     color=UI_TEXT_COLOR_Enum.TEXT_DARK))
                 _steps.append(ui_text_element(

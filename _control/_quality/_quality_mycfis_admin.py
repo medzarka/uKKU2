@@ -107,7 +107,7 @@ class _page_mycfis_admin(Abstract_UI_Page):
                         _my_cfi = Course_CFI(gradeFile=_section_report)
                         _my_cfi.save()
 
-                    if __editmode == '3':
+                    if __editmode == '3' :
                         # course_cfi_id, reviewer = last_name, remark
                         __remark = self.request_obj.GET['remark']
                         __reviewer = self.request_obj.GET['reviewer']
