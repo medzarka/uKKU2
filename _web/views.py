@@ -58,6 +58,8 @@ def change_semester(request):
 
 
 characters = list(string.ascii_letters + string.digits + "!@#$%&*")
+
+
 def generate_random_password():
     length = 6
     random.shuffle(characters)
@@ -67,8 +69,8 @@ def generate_random_password():
     random.shuffle(password)
     return "".join(password)
 
-def reset_password(request):
 
+def reset_password(request):
     if request.method == 'POST':
         _email = request.POST.get('email', None)
         if _email is not None and _email != '':
@@ -79,19 +81,20 @@ def reset_password(request):
                 _user.save()
                 messages.success(request, f'The password is updated.')
                 from _data._data_emails import email
-                __email = email(email_receiver=_email, email_title='Quality uKKU Password Update.', email_message=f'Hello. Your new password is {_password}  . Best Regards.')
+                __email = email(email_receiver=_email
+                                , email_title='Quality uKKU2 Password Update.'
+                                , email_message=f'Your new password is {_password}.')
                 __email.save()
                 __email.send()
-                messages.success(request, f'An email was sent containing the new password to {_email}. Do not forget to check the SPAM folder.')
+                messages.success(request,
+                                 f'An email was sent containing the new password to {_email}. '
+                                 f'Do not forget to check the SPAM folder.')
             except User.DoesNotExist:
                 messages.error(request, 'User not find with provided Email ! ')
         else:
             messages.error(request, 'Invalid Email ! ')
 
     return render(request, "registration/reset_password.html", {})
-
-
-
 
 
 @login_required
@@ -164,6 +167,7 @@ def quality_mycfis_reviewers(request):
 def quality_export(request):
     __page = _page_quality_export(request=request, link='quality_export')
     return render(request, "base.html", __page.getContext())
+
 
 def video(request):
     return render(request, "video.html", {})

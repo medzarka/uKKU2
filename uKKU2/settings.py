@@ -43,6 +43,7 @@ if site_conf.MYSITE_ADMIN_TEMPLATE == 'ADMIN_INTERFACE':
 INSTALLED_APPS += [
 
     'import_export',
+    'dbbackup',  # django-dbbackup
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -217,6 +218,12 @@ print(f'[DIR] the log file is in {os.path.join(DATA_DIR, "log")}')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #######  Sending emails: tanomah.quality@gmail.com
+EMAIL_MODE = site_conf.site_email_mode
+
+SITE_SOCKETLABS_API_SERVER_ID = site_conf.site_email_serverId
+SITE_SOCKETLABS_INJECTION_API_KEY = site_conf.site_email_injectionApiKey
+SITE_SOCKETLABS_SENDER = site_conf.site_email_sender
+
 EMAIL_BACKEND = site_conf.site_EMAIL_BACKEND
 EMAIL_HOST = site_conf.site_EMAIL_HOST
 EMAIL_PORT = site_conf.site_EMAIL_PORT
@@ -242,3 +249,9 @@ ADMIN_SITE_INDEX_TITLE = site_conf.MYSITE_ADMIN_SITE_INDEX_TITLE
 ADMIN_SITE_SITE_TITLE = site_conf.MYSITE_ADMIN_SITE_TITLE
 
 
+##### database and media backup
+BACKUP_DIR = os.path.join(os.path.join(DATA_DIR, 'backup'))
+site_conf.createDir(BACKUP_DIR)
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': BACKUP_DIR}
+print(f'[DIR] the backup dir is {os.path.join(DATA_DIR, "backup")}')

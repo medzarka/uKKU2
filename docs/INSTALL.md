@@ -49,9 +49,7 @@ mkdir ~/web/data/uKKU2_data_TNM/log
 mkdir ~/web/data/uKKU2_data_TNM/media
 mkdir ~/web/data/uKKU2_data_TNM/static
 mkdir ~/web/data/uKKU2_data_TNM/run
-mkdir ~/web/data/uKKU2_data_TNM/db
-mkdir ~/web/data/uKKU2_data_TNM/db/bin
-mkdir ~/web/data/uKKU2_data_TNM/db/backups
+mkdir ~/web/data/uKKU2_data_TNM/backups
 ```
 So far, we configured the two folders for the django project code, and for data.
 
@@ -229,4 +227,21 @@ sudo systemctl restart ukku2tnm.gunicorn.service
 ### Step 5 : Configure NGINX
 **TODO**
 ### Step 6 : Site, database and media backups
-**TODO**
+In order to make backups for the database and the media files of the uKKU2 site, we use the 
+**django-dbbackup** package.
+
+#### Backups
+* In order to make backups for the database and the media files, we type the following command:
+```
+python manage.py dbbackup --compress
+python manage.py mediabackup --compress
+```
+* Then, and if we want to restore the database and the media files, we type the following command:
+```
+python manage.py dbrestore --uncompress
+python manage.py mediarestore --uncompress 
+```
+
+The backup files (database and media) are stored in the **~/web/data/uKKU2_data_TNM/backups** folder.
+
+In order to not lose backups after a server problem, save these backups in another support (local hard disk, Google Drive, ...).
