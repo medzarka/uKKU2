@@ -52,7 +52,7 @@ class _page_mycfis(Abstract_UI_Page):
                     text='Course Name : \t' + _section_report.course_name,
                     alignment=UI_TEXT_ALIGNMENT_Enum.JUSTIFY,
                     color=UI_TEXT_COLOR_Enum.TEXT_DARK))
-                _steps.append(ui_text_element(
+                _steps.append(ui_text_element( #sd sqdqsd
                     text='Section Codes :  \t' + str(_section_report.section_code),
                     alignment=UI_TEXT_ALIGNMENT_Enum.JUSTIFY,
                     color=UI_TEXT_COLOR_Enum.TEXT_DARK))
@@ -313,7 +313,7 @@ class _page_mycfis(Abstract_UI_Page):
                     if _report.cfi_reviewer is None:
                         _rev = ''
                     else:
-                        _rev = _report.cfi_reviewer.first_name
+                        _rev = _report.cfi_reviewer.last_name
                     _text1 = ui_text_element(text=_rev,
                                              color=UI_TEXT_COLOR_Enum.TEXT_DARK)
                     _cell1 = table_cell(cell_centent=_text1)
