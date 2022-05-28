@@ -75,7 +75,7 @@ def reset_password(request):
         _email = request.POST.get('email', None)
         if _email is not None and _email != '':
             try:
-                _user = User.objects.get(username=_email)
+                _user = User.objects.get(email=_email)
                 _password = generate_random_password()
                 _user.set_password(_password)
                 _user.save()
