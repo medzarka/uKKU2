@@ -244,3 +244,10 @@ python manage.py mediarestore --uncompress
 The backup files (database and media) are stored in the **~/web/data/uKKU2_data_TNM/backups** folder.
 
 In order to not lose backups after a server problem, save these backups in another support (local hard disk, Google Drive, ...).
+
+It is possible also to use a more simple database backup with the Django builtin backup tool:
+
+```
+python manage.py dumpdata > db.json   # to make a database backup
+ 
+```

@@ -460,7 +460,7 @@ class _page_generate_section_reports(Abstract_UI_Page):
                     if _report.reviewer is None:
                         _text1 = ui_text_element(text='', color=UI_TEXT_COLOR_Enum.TEXT_DARK)
                     else:
-                        _text1 = ui_text_element(text=_report.reviewer.first_name, color=UI_TEXT_COLOR_Enum.TEXT_DARK)
+                        _text1 = ui_text_element(text=_report.reviewer.last_name, color=UI_TEXT_COLOR_Enum.TEXT_DARK)
                     _cell1 = table_cell(cell_centent=_text1)
                     _row.add_cell_to_row(_cell1)
 

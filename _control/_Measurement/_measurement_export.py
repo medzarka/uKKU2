@@ -311,7 +311,7 @@ class _page_measuerement_export(Abstract_UI_Page):
                     for _meeting in __list_meetings:
                         _section_code = _meeting.section
                         _section_campus = _meeting.campus.campus_name_ar
-                        _tmp['teacher'].append(_meeting.teacher.first_name)
+                        _tmp['teacher'].append(_meeting.teacher.last_name)
                         _tmp['sections'].append(_meeting.section)
                         _tmp['department'].append(_meeting.department.department_name)
                         _tmp['campus'].append(_meeting.campus.campus_name)
@@ -547,7 +547,7 @@ class _page_measuerement_export(Abstract_UI_Page):
                     _cell1 = table_cell(cell_centent=_text1)
                     _row.add_cell_to_row(_cell1)
 
-                    _text1 = ui_text_element(text=_doc.teacher.first_name,
+                    _text1 = ui_text_element(text=_doc.teacher.last_name,
                                              color=UI_TEXT_COLOR_Enum.TEXT_DARK)
                     _cell1 = table_cell(cell_centent=_text1)
                     _row.add_cell_to_row(_cell1)
