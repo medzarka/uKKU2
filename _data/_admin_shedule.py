@@ -13,7 +13,7 @@ class UserCustomField(forms.ModelChoiceField):
 class MeetingAdmin(admin.ModelAdmin):
     list_display = (
         'meeting_id', 'semester',  'course', 'section', 'teacher', 'campus', 'department')
-    list_filter = ('semester', 'campus', 'department')
+    list_filter = ('semester', 'teacher', 'campus', 'department')
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == 'teacher':
