@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from _control.AbstractPage import Abstract_UI_Page
 from _control._Measurement.Measurement_tools import Section_Measurment, Course_Measurment
 from _data._data_academic_program import Course
-from _data._data_measurement import GradesFile, ReportState, CourseFile
+from _data._data_measurement import GradesFile, ReportState, CourseFile, MeasurementReviewerAffectations
 from _data._data_periods import Semester
 from _data._data_schedule import Meeting
 from _web.UI.UI_Basic_Elements import ui_basic_block, ui_text_element, UI_TEXT_COLOR_Enum, UI_TEXT_BG_Enum, \
@@ -575,7 +575,7 @@ class _page_generate_course_reports(Abstract_UI_Page):
                                                                            campus_name=_section_campus)
 
                         print(
-                            f'Looking for a section report with semester ={_actual_semester}, section code={_section_code}, and campus = {_section_campus} ')
+                            f'The number of section report for the course {_course} is {len(__list_Section_Reports)}.')
                         if len(__list_Section_Reports) > 1:
                             __list_sections_with_more_than_two_sections[_course] = []
                             for _report in __list_Section_Reports:
