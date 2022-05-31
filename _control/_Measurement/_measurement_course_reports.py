@@ -564,12 +564,12 @@ class _page_generate_course_reports(Abstract_UI_Page):
 
             __list_courses = Course.objects.all()
             for _course in __list_courses:
-                __list_GradesFiles = GradesFile.objects.filter(semester=_actual_semester,
-                                                               section_courseObj=_course)
+                __list = GradesFile.objects.filter(semester=_actual_semester,
+                                                   section_courseObj=_course)
                 if len(__list_GradesFiles) > 1:
-                    __list_sections_with_more_than_two_sections[_course]
+                    __list_sections_with_more_than_two_sections[_course] = []
                     for _report in __list_GradesFiles:
-                        __list_sections_with_more_than_two_sections[_course].append(_report.teacher)
+                        __list_sections_with_more_than_two_sections[_course].append(_report)
                         __list_GradesFiles.append(_report)
                         if _actual_user.username == _report.teacher.username:
                             _work_withCourses = True
