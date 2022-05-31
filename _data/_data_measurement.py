@@ -130,7 +130,6 @@ class GradesFile(models.Model):
     reviewer = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name='section_reviews')
     section_department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True, blank=True)
     section_courseObj = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True)
-    section_meetingObj = models.ForeignKey(Meeting, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return ' Grades File for section ' + str(self.section_code) + ' (' + str(self.submission_time) + ')'

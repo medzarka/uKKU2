@@ -569,7 +569,7 @@ class _page_generate_course_reports(Abstract_UI_Page):
                     __list_sections_with_more_than_two_sections[_course] = []
                     for _meeting in __list_meetings:
                         _section_code = _meeting.section
-                        _section_campus = f'{_meeting.campus.campus_name} ({_meeting.campus.campus_name_ar})'
+                        _section_campus = f'{_meeting.campus.campus_name}'
                         __list_Section_Reports = GradesFile.objects.filter(semester=_actual_semester,
                                                                            section_code=_section_code,
                                                                            campus_name=_section_campus)

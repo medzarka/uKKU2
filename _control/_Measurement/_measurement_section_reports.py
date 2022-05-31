@@ -176,7 +176,7 @@ class _page_generate_section_reports(Abstract_UI_Page):
                         GradesFile_obj.course_name = f'{_meeting_obj.course.course_name} ({_meeting_obj.course.course_name_ar})'
                         GradesFile_obj.course_code = _meeting_obj.course.course_code
                         GradesFile_obj.section_department = _meeting_obj.department
-                        GradesFile_obj.campus_name = f'{_meeting_obj.campus.campus_name} ({_meeting_obj.campus.campus_name_ar})'
+                        GradesFile_obj.campus_name = f'{_meeting_obj.campus.campus_name}'
                         GradesFile_obj.section_courseObj = _meeting_obj.course
                         GradesFile_obj.section_code = _meeting_obj.section
                         GradesFile_obj.section_meetingObj = _meeting_obj
