@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from _control._Measurement.Measurement_FS import Measurement_FS
 from _data._data_academic_program import Course
 from _data._data_periods import Semester
+from _data._data_schedule import Meeting
 
 _measurement_grades_fs = FileSystemStorage(location=Measurement_FS.GRADES.value)
 _measurement_reports_fs = FileSystemStorage(location=Measurement_FS.REPORTS.value)
@@ -129,6 +130,7 @@ class GradesFile(models.Model):
     reviewer = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name='section_reviews')
     section_department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True, blank=True)
     section_courseObj = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True)
+    section_meetingObj = models.ForeignKey(Meeting, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return ' Grades File for section ' + str(self.section_code) + ' (' + str(self.submission_time) + ')'

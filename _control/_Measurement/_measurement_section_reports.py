@@ -179,6 +179,7 @@ class _page_generate_section_reports(Abstract_UI_Page):
                         GradesFile_obj.campus_name = f'{_meeting_obj.campus.campus_name} ({_meeting_obj.campus.campus_name_ar})'
                         GradesFile_obj.section_courseObj = _meeting_obj.course
                         GradesFile_obj.section_code = _meeting_obj.section
+                        GradesFile_obj.section_meetingObj = _meeting_obj
                         GradesFile_obj.save()
 
                 if __edit_mode or __readonly_mode:
