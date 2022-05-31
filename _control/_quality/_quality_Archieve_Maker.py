@@ -401,7 +401,7 @@ class QualityArchiveMakerThread(threading.Thread):
 
 
         except Exception as eee:
-            self.addLogTrace('[ERROR] !!! An error was occured  ' + str(eee) + '<br>')
+            self.addLogTrace('[ERROR] !!! An error was occurred  ' + str(eee) + '<br>')
             end_time = datetime.now()
             _export.state = -1
             _export.elapsedTime = '{}'.format(end_time - start_time)
