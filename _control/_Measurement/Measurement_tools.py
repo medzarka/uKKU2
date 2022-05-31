@@ -7,6 +7,7 @@ import xlrd as xl
 import statistics
 
 from django.core.files import File
+from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.core.files.temp import NamedTemporaryFile
 from scipy.stats import pearsonr
@@ -1075,8 +1076,8 @@ class MEASUREMENT_Common():
             return None
         else:
             try:
-                _template_section_report = os.path.join('media/' + Measurement_FS.TEMPLATES.value,
-                                                        'section_report_template.docx')
+                _template_section_report = os.path.join(settings.DATA_DIR, 'media',
+                                                        Measurement_FS.TEMPLATES.value, 'section_report_template.docx')
                 tpl = DocxTemplate(_template_section_report)
 
                 context = {

@@ -23,9 +23,9 @@ class _page_generate_section_reports(Abstract_UI_Page):
 
     def CreateBlocks(self, _blocks_list=None):
         _actual_semester = Semester.objects.get(semester_id=self.request_obj.session['selected_semester'])
-        self.logger.info(f'Semester used is {_actual_semester}')
+        self.logger.warning(f'Semester used is {_actual_semester}')
         _actual_user = User.objects.get(id=self.request_obj.user.id)
-        self.logger.info(f'User connected is {_actual_user}')
+        self.logger.warning(f'User connected is {_actual_user}')
         res = []
 
         ###################################################################################
@@ -39,7 +39,9 @@ class _page_generate_section_reports(Abstract_UI_Page):
 
             try:
                 _course_report = GradesFile.objects.get(grades_file_id=_id)
+                self.logger.warning(f'Course report in POST with id {_id}')
                 _course_report.teacher_analysis = _analysis
+                self.logger.warning(f'The analysis is in POST with content = {_analysis}')
                 # _course_report.section_department = Department.objects.get(department_id=_department)
                 # _course_report.section_courseObj = Course.objects.get(course_id=_course_id)
                 # _course_report.course_name = _course_report.section_courseObj.course_name
@@ -80,7 +82,7 @@ class _page_generate_section_reports(Abstract_UI_Page):
 
             except Exception as e:
                 _h1 = ui_text_element(
-                    text='An internal error was occured: the report is not found ! Please try again. \n ' + str(e),
+                    text='An internal error was occurred: the report is not found ! Please try again. \n ' + str(e),
                     alignment=UI_TEXT_ALIGNMENT_Enum.LEFT,
                     color=UI_TEXT_COLOR_Enum.TEXT_DANGER,
                     heading=UI_TEXT_HEADING_Enum.H4)
@@ -628,7 +630,7 @@ class _page_generate_section_reports(Abstract_UI_Page):
 
             _meetings_list = {}
             for _meeting in Meeting.objects.filter(semester=_actual_semester, teacher=_actual_user):
-                # TODO filter section that where successfully uploaded
+                # filter section that where successfully uploaded
                 # look for a gradeFile with the same section code.
                 try:
                     _report_tmp = GradesFile.objects.get(semester=_actual_semester, teacher=_actual_user,
