@@ -10,7 +10,6 @@ from django.contrib.auth.models import User
 from _control._Measurement.Measurement_FS import Measurement_FS
 from _data._data_academic_program import Course
 from _data._data_periods import Semester
-from _data._data_schedule import Meeting
 
 _measurement_grades_fs = FileSystemStorage(location=Measurement_FS.GRADES.value)
 _measurement_reports_fs = FileSystemStorage(location=Measurement_FS.REPORTS.value)
