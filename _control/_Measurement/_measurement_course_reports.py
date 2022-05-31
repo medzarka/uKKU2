@@ -577,7 +577,7 @@ class _page_generate_course_reports(Abstract_UI_Page):
                         print(
                             f'Looking for a section report with semester ={_actual_semester}, section code={_section_code}, and campus = {_section_campus} ')
                         for _report in __list_Section_Reports:
-                            print(f'####')
+                            print(f'####  --> course = {_course}')
                             __list_sections_with_more_than_two_sections[_course].append(_report.teacher)
                             __list_GradesFiles.append(_report)
 
