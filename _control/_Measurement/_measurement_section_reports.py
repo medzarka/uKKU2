@@ -23,7 +23,9 @@ class _page_generate_section_reports(Abstract_UI_Page):
 
     def CreateBlocks(self, _blocks_list=None):
         _actual_semester = Semester.objects.get(semester_id=self.request_obj.session['selected_semester'])
+        self.logger.info(f'Semester used is {_actual_semester}')
         _actual_user = User.objects.get(id=self.request_obj.user.id)
+        self.logger.info(f'User connected is {_actual_user}')
         res = []
 
         ###################################################################################
@@ -557,6 +559,7 @@ class _page_generate_section_reports(Abstract_UI_Page):
                                           table_is_striped=True,
                                           table_is_hover=True, table_is_bordered=True)
                 _ui_table_block.addBasicElement(_table)
+                self.logger.info(f'List of sections displayed.')
                 res.append(_ui_table_block)
 
             _ui_basic_block = ui_basic_block(block_title='Instructions for Measurement Report Generation')
@@ -625,7 +628,7 @@ class _page_generate_section_reports(Abstract_UI_Page):
 
             _meetings_list = {}
             for _meeting in Meeting.objects.filter(semester=_actual_semester, teacher=_actual_user):
-                # TODO filter section that where successfuly uploaded
+                # TODO filter section that where successfully uploaded
                 # look for a gradeFile with the same section code.
                 try:
                     _report_tmp = GradesFile.objects.get(semester=_actual_semester, teacher=_actual_user,

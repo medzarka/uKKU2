@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+import logging
 
 from django.contrib.auth.models import User
 
@@ -16,6 +17,7 @@ class Abstract_UI_Page(ABC):
         self.page_title = page_title
         self.request_obj = request_obj
         self.link = link
+        self.logger = logging.getLogger(page_title)
 
         self.context = {}
         self.BasicContext(self.request_obj)  # add basic context
