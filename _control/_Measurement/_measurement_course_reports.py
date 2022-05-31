@@ -565,7 +565,7 @@ class _page_generate_course_reports(Abstract_UI_Page):
             __list_courses = Course.objects.all()
             for _course in __list_courses:
                 __list_GradesFiles = GradesFile.objects.filter(semester=_actual_semester,
-                                                               campus_name=_section_campus)
+                                                               section_courseObj=_course)
                 if len(__list_GradesFiles) > 1:
                     __list_sections_with_more_than_two_sections[_course]
                     for _report in __list_GradesFiles:
