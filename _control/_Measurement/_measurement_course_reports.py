@@ -574,17 +574,17 @@ class _page_generate_course_reports(Abstract_UI_Page):
                                                                            section_code=_section_code,
                                                                            campus_name=_section_campus)
 
-                        print(
-                            f'The number of section report for the course {_course} is {len(__list_Section_Reports)}.')
-                        if len(__list_Section_Reports) > 1:
-                            __list_sections_with_more_than_two_sections[_course] = []
-                            for _report in __list_Section_Reports:
-                                print(f'####  --> course = {_course}')
-                                __list_sections_with_more_than_two_sections[_course].append(_report.teacher)
-                                __list_GradesFiles.append(_report)
+                    print(
+                        f'The number of section report for the course {_course} is {len(__list_Section_Reports)}.')
+                    if len(__list_Section_Reports) > 1:
+                        __list_sections_with_more_than_two_sections[_course] = []
+                        for _report in __list_Section_Reports:
+                            print(f'####  --> course = {_course}')
+                            __list_sections_with_more_than_two_sections[_course].append(_report.teacher)
+                            __list_GradesFiles.append(_report)
 
-                                if _actual_user.username == _report.teacher.username:
-                                    _work_withCourses = True
+                            if _actual_user.username == _report.teacher.username:
+                                _work_withCourses = True
             print(__list_sections_with_more_than_two_sections)
             if _work_withCourses:
                 _ui_form_block = ui_form_block(block_title='Select the Course name',
