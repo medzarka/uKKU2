@@ -2,6 +2,7 @@
 from time import strftime, gmtime
 from django.core.files import File
 from django.contrib.auth.models import User, Group
+from django.conf import settings
 from docxtpl import DocxTemplate
 
 from _control._Measurement.Measurement_FS import Quality_FS
@@ -80,9 +81,9 @@ class QualityArchiveMakerThread(threading.Thread):
 
             if _cfi_obj.cfi_report_state == ReportState.ACCEPTED.value:
                 try:
-                    cfr_filename = os.path.join('media/' + Quality_FS.TMP.value,
+                    cfr_filename = os.path.join(settings.DATA_DIR, 'media', Quality_FS.TMP.value,
                                                 'cfr_report_' + str(_cfi_obj.course_cfi_id) + '.docx')
-                    cfi_filename = os.path.join('media/' + Quality_FS.TMP.value,
+                    cfi_filename = os.path.join(settings.DATA_DIR, 'media', Quality_FS.TMP.value,
                                                 'cfi_report_' + str(_cfi_obj.course_cfi_id) + '.docx')
 
                     _data = {}
@@ -214,7 +215,8 @@ class QualityArchiveMakerThread(threading.Thread):
                         self.addLogTrace(f'          [INFO] The campus is: {_cfi_report.gradeFile.campus_name}<br>')
 
                         ___meeting = Meeting.objects.get(semester=self._selected_semester, section=_the_section_code,
-                                                         teacher=_cfi_report.gradeFile.teacher, department=_cfi_report.gradeFile.section_department)
+                                                         teacher=_cfi_report.gradeFile.teacher,
+                                                         department=_cfi_report.gradeFile.section_department)
 
                         ##### create the CFI and the CFR reports only if the work is accepted
                         report_gen_result = self.generate_quality_cfr_report(_cfi_report, ___meeting)
@@ -383,7 +385,7 @@ class QualityArchiveMakerThread(threading.Thread):
             self.addLogTrace('[INFO] The archive file was correctly updated in the database<br>')
             _export.elapsedTime = '{}'.format(end_time - start_time)
 
-            exec_log_filename = os.path.join('media/' + Quality_FS.TMP.value, 'log_trace.txt')
+            exec_log_filename = os.path.join(settings.DATA_DIR, 'media', Quality_FS.TMP.value, 'log_trace.txt')
             with open(exec_log_filename, 'w') as f:
                 f.write(self.LogTrace.replace('<br>', ''))
             _export.exec_trace_file.save('exec_log_trace.txt', File(open(exec_log_filename, 'rb')))
