@@ -573,7 +573,11 @@ class _page_generate_course_reports(Abstract_UI_Page):
                         __list_Section_Reports = GradesFile.objects.filter(semester=_actual_semester,
                                                                            section_code=_section_code,
                                                                            campus_name=_section_campus)
+
+                        print(
+                            f'Looking for a section report with semester ={_actual_semester}, section code={_section_code}, and campus = {_section_campus} ')
                         for _report in __list_Section_Reports:
+                            print(f'####')
                             __list_sections_with_more_than_two_sections[_course].append(_report.teacher)
                             __list_GradesFiles.append(_report)
 
