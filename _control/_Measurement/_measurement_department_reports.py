@@ -30,7 +30,7 @@ class _page_generate_department_reports(Abstract_UI_Page):
         __department_name = departmentObj.department_name
         __department_id = departmentObj.department_id
 
-        _doc_filename = os.path.join(settings.DATA_DIR , 'media/' , Measurement_FS.REPORTS.value,
+        _doc_filename = os.path.join(settings.DATA_DIR, 'media/', Measurement_FS.REPORTS.value,
                                      'Department_report_' + str(__department_name) + '.docx')
 
         ___courses = []

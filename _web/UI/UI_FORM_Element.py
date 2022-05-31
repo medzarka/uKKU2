@@ -132,7 +132,10 @@ class form_field:
 
             if self.isArabic:
                 res += 'dir="rtl" lang="ar"'
-            res += '>' + self.input_value + '</textarea>'
+            if self.input_value is None:
+                res += '>''</textarea>'
+            else:
+                res += '>' + self.input_value + '</textarea>'
             res += '\n</div>'
         elif self.input_type == FormInputTypeEnum.SELECT_INPUT:
             res += '\n <div class="form-group">'
