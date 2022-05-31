@@ -579,7 +579,7 @@ class _page_generate_course_reports(Abstract_UI_Page):
 
                             if _actual_user.username == _report.teacher.username:
                                 _work_withCourses = True
-
+            print(__list_sections_with_more_than_two_sections)
             if _work_withCourses:
                 _ui_form_block = ui_form_block(block_title='Select the Course name',
                                                form_action=self.link, form_id='test', form_method='POST')
