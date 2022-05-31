@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.models import User, Group
+from django.conf import settings
 
 from _control.AbstractPage import Abstract_UI_Page
 from _data._data_academic_program import Course

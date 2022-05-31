@@ -186,7 +186,7 @@ class _page_mycfis(Abstract_UI_Page):
                 _ui_form_block_upload = ui_form_block(block_title='Upload/Update a Report',
                                                       form_action=self.link, form_id='report_upload',
                                                       form_method='POST')
-                _data = {'1': '1 - Course Specification', '2': '2 - Exams Example', '3': '3 - Marks File',
+                _data = {'1': '1 - Course Specification', '2': '2 - Exams Samples', '3': '3 - Marks File',
                          '4': '4 - CLOs Measurement',
                          '5': '5 - Course Report', '6': '6 - KPIs Measurement', '7': '7 - Faculty Schedule',
                          '8': '8 - Course Plan',
@@ -194,7 +194,7 @@ class _page_mycfis(Abstract_UI_Page):
 
                 _select_field = form_field('The Report Type', 'report_type_id',
                                            input_type=FormInputTypeEnum.SELECT_INPUT, list_data=_data)
-                _report_field = form_field('The report (60 MB Max Size)', 'report_to_upload',
+                _report_field = form_field('The report (50 MB Max Size)', 'report_to_upload',
                                            input_type=FormInputTypeEnum.FILE_INPUT)
 
                 _submit_field = form_field('Upload/Update', 'Upload_Update',
