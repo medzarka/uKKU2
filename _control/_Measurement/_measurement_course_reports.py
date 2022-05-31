@@ -566,7 +566,7 @@ class _page_generate_course_reports(Abstract_UI_Page):
             for _course in __list_courses:
                 __list_meetings = Meeting.objects.filter(semester=_actual_semester, course=_course)
                 if len(__list_meetings) > 1:
-                    __list_sections_with_more_than_two_sections[_course] = []
+
                     for _meeting in __list_meetings:
                         _section_code = _meeting.section
                         _section_campus = f'{_meeting.campus.campus_name}'
@@ -576,13 +576,15 @@ class _page_generate_course_reports(Abstract_UI_Page):
 
                         print(
                             f'Looking for a section report with semester ={_actual_semester}, section code={_section_code}, and campus = {_section_campus} ')
-                        for _report in __list_Section_Reports:
-                            print(f'####  --> course = {_course}')
-                            __list_sections_with_more_than_two_sections[_course].append(_report.teacher)
-                            __list_GradesFiles.append(_report)
+                        if len(__list_Section_Reports) > 1:
+                            __list_sections_with_more_than_two_sections[_course] = []
+                            for _report in __list_Section_Reports:
+                                print(f'####  --> course = {_course}')
+                                __list_sections_with_more_than_two_sections[_course].append(_report.teacher)
+                                __list_GradesFiles.append(_report)
 
-                            if _actual_user.username == _report.teacher.username:
-                                _work_withCourses = True
+                                if _actual_user.username == _report.teacher.username:
+                                    _work_withCourses = True
             print(__list_sections_with_more_than_two_sections)
             if _work_withCourses:
                 _ui_form_block = ui_form_block(block_title='Select the Course name',
