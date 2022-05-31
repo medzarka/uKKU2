@@ -6,6 +6,7 @@ import tempfile
 import json
 
 from django.contrib.auth.models import User, Group
+from django.conf import settings
 
 from _control.AbstractPage import Abstract_UI_Page
 from _control._Measurement.Measurement_FS import Measurement_FS
@@ -29,7 +30,7 @@ class _page_generate_department_reports(Abstract_UI_Page):
         __department_name = departmentObj.department_name
         __department_id = departmentObj.department_id
 
-        _doc_filename = os.path.join('media/' + Measurement_FS.REPORTS.value,
+        _doc_filename = os.path.join(settings.DATA_DIR , 'media/' , Measurement_FS.REPORTS.value,
                                      'Department_report_' + str(__department_name) + '.docx')
 
         ___courses = []
@@ -146,7 +147,7 @@ class _page_generate_department_reports(Abstract_UI_Page):
             ## display the information
 
             _ui_form_block = ui_form_block(
-                block_title=f'Update Deparment Statistical measurement (It consumes CPU and Memory).',
+                block_title=f'Update Department Statistical measurement (It consumes CPU and Memory).',
                 form_action=self.link, form_id='update_data', form_method='POST')
 
             _action = form_field('action', 'action', input_type=FormInputTypeEnum.HIDDEN_INPUT,
