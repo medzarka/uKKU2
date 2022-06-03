@@ -82,7 +82,7 @@ class Semester(models.Model):
     def __str__(self):
         # _start = self.semester_date_start.strftime("%A %d. %B %Y")
         # _end = self.semester_date_end.strftime("%A %d. %B %Y")
-        return str(self.semester_academic_year) + '_semester_' + self.semester_name
+        return str(self.semester_academic_year) + '__' + self.semester_name
 
     class Meta:
         ordering = ['semester_academic_year', 'semester_date_start', ]
