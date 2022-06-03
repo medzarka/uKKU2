@@ -232,7 +232,7 @@ class Course_CFI(models.Model):
         self.cfi_reviewer = user
         ## mail
         mail_subject = f'Update status for the quality files report for section {self.gradeFile.section_code}'
-        mail_message = f'Dear faculty member, we want to notice that the quality files for the section {self.gradeFile.section_code} for the term {semester} are accepted.'
+        mail_message = f'Dear faculty member, we want to notice that the quality files for the section {self.gradeFile.section_code} ({semester}) are accepted.'
         self.sendEmail(self.gradeFile.teacher.email, mail_subject, mail_message)
 
         self.save()
@@ -243,7 +243,7 @@ class Course_CFI(models.Model):
 
         ## mail
         mail_subject = f'Update status for the quality files for section {self.gradeFile.section_code}'
-        mail_message = f'Dear faculty member, we want to notice that the quality files for the section {self.gradeFile.section_code} for the term {semester} need revision.'
+        mail_message = f'Dear faculty member, we want to notice that the quality files for the section {self.gradeFile.section_code} ({semester}) need revision.'
         self.sendEmail(self.gradeFile.teacher.email, mail_subject, mail_message)
 
         self.save()
@@ -257,11 +257,11 @@ class Course_CFI(models.Model):
 
             ## mail to the reviewer
             mail_subject = f'New quality files to review for the section {self.gradeFile.section_code} are submitted'
-            mail_message = f'Dear faculty member and Quality Unit member, we want to notice that Quality Files for the section {self.gradeFile.section_code} for the term {semester} are submitted and needs your review.'
+            mail_message = f'Dear faculty member and Quality Unit member, we want to notice that Quality Files for the section {self.gradeFile.section_code} ({semester}) are submitted and need your review.'
             self.sendEmail(reviewer_email, mail_subject, mail_message)
             ## mail to teacher
             mail_subject = f'Update status for the quality files for section {self.gradeFile.section_code}'
-            mail_message = f'Dear faculty member, we want to notice that the quality files for the section {self.gradeFile.section_code} for the term {semester} are submitted and are under review.'
+            mail_message = f'Dear faculty member, we want to notice that the quality files for the section {self.gradeFile.section_code} ({semester}) are submitted and are under review.'
             self.sendEmail(self.gradeFile.teacher.email, mail_subject, mail_message)
 
             return
@@ -272,11 +272,11 @@ class Course_CFI(models.Model):
 
             ## mail to the reviewer
             mail_subject = f'New quality files to review for the section {self.gradeFile.section_code} are submitted'
-            mail_message = f'Dear faculty member and Quality Unit member, we want to notice that Quality Files for the section {self.gradeFile.section_code} for the term {semester} are submitted and needs your review.'
+            mail_message = f'Dear faculty member and Quality Unit member, we want to notice that Quality Files for the section {self.gradeFile.section_code} ({semester}) are submitted and need your review.'
             self.sendEmail(reviewer_email, mail_subject, mail_message)
             ## mail to teacher
             mail_subject = f'Update status for the quality files for section {self.gradeFile.section_code}'
-            mail_message = f'Dear faculty member, we want to notice that the quality files for the section {self.gradeFile.section_code} for the term {semester} are submitted and are under review.'
+            mail_message = f'Dear faculty member, we want to notice that the quality files for the section {self.gradeFile.section_code} ({semester}) are submitted and are under review.'
             self.sendEmail(self.gradeFile.teacher.email, mail_subject, mail_message)
 
             return
@@ -287,10 +287,10 @@ class Course_CFI(models.Model):
         __email.save()
         __email.send()
 
-    def end(self):
+    def end(self, semester=''):
         ## mail
         mail_subject = f'Update status for the quality files for section {self.gradeFile.section_code}'
-        mail_message = f'Dear faculty member, we want to notice that the quality reports for the section {self.gradeFile.section_code} is deleted. Best Regards'
+        mail_message = f'Dear faculty member, we want to notice that the quality reports for the section {self.gradeFile.section_code} ({semester}) are deleted.'
         self.sendEmail(self.gradeFile.teacher.email, mail_subject, mail_message)
         self.delete()
 

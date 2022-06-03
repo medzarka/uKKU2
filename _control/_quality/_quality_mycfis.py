@@ -261,7 +261,7 @@ class _page_mycfis(Abstract_UI_Page):
                             _reviewer_email = ''
                         _report.submit(update=True, reviewer_email=_reviewer_email)
                     if _action == 'delete':
-                        _report.end()
+                        _report.end(semester=_actual_semester)
                 except _report.DoesNotExist:
                     pass
 
