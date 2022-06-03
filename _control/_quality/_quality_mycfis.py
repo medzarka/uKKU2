@@ -52,7 +52,7 @@ class _page_mycfis(Abstract_UI_Page):
                     text='Course Name : \t' + _section_report.course_name,
                     alignment=UI_TEXT_ALIGNMENT_Enum.JUSTIFY,
                     color=UI_TEXT_COLOR_Enum.TEXT_DARK))
-                _steps.append(ui_text_element( #sd sqdqsd
+                _steps.append(ui_text_element(  # sd sqdqsd
                     text='Section Codes :  \t' + str(_section_report.section_code),
                     alignment=UI_TEXT_ALIGNMENT_Enum.JUSTIFY,
                     color=UI_TEXT_COLOR_Enum.TEXT_DARK))
@@ -259,7 +259,7 @@ class _page_mycfis(Abstract_UI_Page):
                                                                                user=_actual_user).reviewer.email
                         except:
                             _reviewer_email = ''
-                        _report.submit(update=True, reviewer_email=_reviewer_email)
+                        _report.submit(update=True, reviewer_email=_reviewer_email, semester=_actual_semester)
                     if _action == 'delete':
                         _report.end(semester=_actual_semester)
                 except _report.DoesNotExist:
