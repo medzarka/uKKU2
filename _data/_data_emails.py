@@ -52,6 +52,7 @@ class email(models.Model):
                                 from_email=self.email_sender,
                                 recipient_list=[self.email_receiver, ], html_message=message_html_body,
                                 fail_silently=False)
+
                 time_elapsed = datetime.now() - start_time
                 print(f'# res of Sending email through SMTP ---> {res}')
                 if res > 0:
