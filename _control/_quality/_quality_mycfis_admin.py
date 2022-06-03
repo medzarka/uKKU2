@@ -245,9 +245,9 @@ class _page_mycfis_admin(Abstract_UI_Page):
                         _action = self.request_obj.GET['action']
                         _report = Course_CFI.objects.get(course_cfi_id=_id)
                         if _action == 'accept':
-                            _report.validate(_actual_user)
+                            _report.validate(_actual_user, semester=_actual_semester)
                         if _action == 'reject':
-                            _report.refuse(_actual_user)
+                            _report.refuse(_actual_user, semester=_actual_semester)
 
                     except _report.DoesNotExist:
                         pass

@@ -43,9 +43,9 @@ class _measurement_section_reports_admin(Abstract_UI_Page):
                     _action = self.request_obj.GET['action']
                     _report = GradesFile.objects.get(grades_file_id=_id)
                     if _action == 'refuse':
-                        _report.refuse(_actual_user)
+                        _report.refuse(_reviewer = _actual_user, semester=_actual_semester)
                     if _action == 'validate':
-                        _report.validate(_actual_user)
+                        _report.validate(_reviewer = _actual_user, semester=_actual_semester)
 
                     if _action == 'review':
                         __reviewMode = True

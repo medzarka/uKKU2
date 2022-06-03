@@ -56,7 +56,7 @@ class _page_generate_section_reports(Abstract_UI_Page):
                                                                                       user=_actual_user).reviewer.email
                     except:
                         _reviewer_email = ''
-                    _course_report.submit(reviewer_email=_reviewer_email)
+                    _course_report.submit(reviewer_email=_reviewer_email, semester=_actual_semester)
                     _course_report.save()
                     _h1 = ui_text_element(
                         text='Done. The report is Generated.',
@@ -417,7 +417,7 @@ class _page_generate_section_reports(Abstract_UI_Page):
                                                                                           user=_actual_user).reviewer.email
                         except:
                             _reviewer_email = ''
-                        _report.submit(update=True, reviewer_email=_reviewer_email)
+                        _report.submit(update=True, reviewer_email=_reviewer_email, semester=_actual_semester)
                     if _action == 'delete':
                         _report.end()
                 except GradesFile.DoesNotExist:

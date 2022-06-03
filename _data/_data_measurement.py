@@ -172,29 +172,29 @@ class GradesFile(models.Model):
         if self.report_state == ReportState.NEEDS_REVIEW.value:
             return 'NEEDS REVIEW'
 
-    def validate(self, _reviewer):
+    def validate(self, _reviewer, semester= ''):
         self.report_state = ReportState.ACCEPTED.value
         self.reviewer = _reviewer
 
         ## mail
         mail_subject = f'Update status for the Statistical section report for section {self.section_code}'
-        mail_message = f'Dear faculty member, we want to notice that the statistical report for the section {self.section_code} is accepted. Best regards'
+        mail_message = f'Dear faculty member, we want to notice that the statistical report for the section {self.section_code} for the term {semester} is accepted.'
         self.sendEmail(self.teacher.email, mail_subject, mail_message)
 
         self.save()
 
-    def refuse(self, _reviewer):
+    def refuse(self, _reviewer, semester= ''):
         self.report_state = ReportState.NEEDS_REVIEW.value
         self.reviewer = _reviewer
 
         ## mail
         mail_subject = f'Update status for the Statistical section report for section {self.section_code}'
-        mail_message = f'Dear faculty member, we want to notice that the statistical report for the section {self.section_code} needs revision . Best regards'
+        mail_message = f'Dear faculty member, we want to notice that the statistical report for the section {self.section_code} for the term {semester}  needs revision.'
         self.sendEmail(self.teacher.email, mail_subject, mail_message)
 
         self.save()
 
-    def submit(self, update=False, reviewer_email=''):
+    def submit(self, update=False, reviewer_email='' , semester = ''):
 
         # print('-------> ' + str(self.report_state))
 
@@ -205,11 +205,11 @@ class GradesFile(models.Model):
 
             ## mail to the reviewer
             mail_subject = f'A new statistical report to review for the section {self.section_code} is submitted'
-            mail_message = f'Dear faculty member and Measurement Unit member, we want to notice that the statistical report for the section {self.section_code} is submitted and needs your review. Best regards'
+            mail_message = f'Dear faculty member and Measurement Unit member, we want to notice that the statistical report for the section {self.section_code} for the term {semester} is submitted and needs your review.'
             self.sendEmail(reviewer_email, mail_subject, mail_message)
             ## mail to teacher
             mail_subject = f'A new statistical report to review for the section {self.section_code} is submitted'
-            mail_message = f'Dear faculty member, we want to notice that the statistical report for the section {self.section_code} is submitted and is under review. Best regards'
+            mail_message = f'Dear faculty member, we want to notice that the statistical report for the section {self.section_code} for the term {semester} is submitted and is under review.'
             self.sendEmail(self.teacher.email, mail_subject, mail_message)
 
             return
@@ -220,12 +220,12 @@ class GradesFile(models.Model):
 
             ## mail to the reviewer
             mail_subject = f'A new statistical report to review for the section {self.section_code} is submitted'
-            mail_message = f'Dear faculty member and Measurement Uinit member, we want to notice that the statistical report for the section {self.section_code} is submitted and needs your review. Best regards'
+            mail_message = f'Dear faculty member and Measurement Uinit member, we want to notice that the statistical report for the section {self.section_code} for the term {semester} is submitted and needs your review.'
             self.sendEmail(reviewer_email, mail_subject, mail_message)
 
             ## mail to the teacher
             mail_subject = f'A new statistical report to review for the section {self.section_code} is submitted'
-            mail_message = f'Dear faculty member, we want to notice that the statistical report for the section {self.section_code} is submitted and is under review. Best regards'
+            mail_message = f'Dear faculty member, we want to notice that the statistical report for the section {self.section_code} for the term {semester} is submitted and is under review.'
             self.sendEmail(self.teacher.email, mail_subject, mail_message)
 
             return
