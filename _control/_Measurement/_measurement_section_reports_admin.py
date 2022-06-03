@@ -91,7 +91,7 @@ class _measurement_section_reports_admin(Abstract_UI_Page):
                     ___action = form_field('action', 'action', input_type=FormInputTypeEnum.HIDDEN_INPUT,
                                            input_value='remark', is_required=True)
                     ___reviewer = form_field('reviewer', 'reviewer', input_type=FormInputTypeEnum.HIDDEN_INPUT,
-                                             input_value=_actual_user.first_name, is_required=True)
+                                             input_value=_actual_user.last_name, is_required=True)
 
                     theremark = form_field('remark', 'remark', input_type=FormInputTypeEnum.TEXTAREA_INPUT,
                                            input_value='', size=100,
@@ -161,7 +161,7 @@ class _measurement_section_reports_admin(Abstract_UI_Page):
                             _cell1 = table_cell(cell_centent=_text1)
                             _row.add_cell_to_row(_cell1)
 
-                            _text1 = ui_text_element(text=_report.teacher.first_name,
+                            _text1 = ui_text_element(text=_report.teacher.last_name,
                                                      color=UI_TEXT_COLOR_Enum.TEXT_DARK)
                             _cell1 = table_cell(cell_centent=_text1)
                             _row.add_cell_to_row(_cell1)

@@ -256,7 +256,7 @@ class _page_mycfis_admin(Abstract_UI_Page):
 
                 if len(_list) > 0:
                     _ui_table_block = ui_basic_block(
-                        block_title='List of Course File Index Reports to be Administrated')
+                        block_title='List of Course File Index Reports to be reviewed')
 
                     _rows = []
 

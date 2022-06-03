@@ -120,7 +120,7 @@ class GradesFile(models.Model):
 
     teacher = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name='section_reports')
 
-    version = models.IntegerField(verbose_name="Version", default=0)
+    version = models.IntegerField(verbose_name="Version", default=1)
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE, null=True, blank=True)
     report_state = models.IntegerField(verbose_name="State", default=ReportState.CREATED.value)
 

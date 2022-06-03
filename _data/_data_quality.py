@@ -150,7 +150,7 @@ class Course_CFI(models.Model):
                                   validators=[validate_file_size, validate_file_type], max_length=1024)
 
     # review part --------------------------------------------------------------------------------------
-    cfi_version = models.IntegerField(verbose_name="Version", default=0)
+    cfi_version = models.IntegerField(verbose_name="Version", default=1)
     cfi_report_state = models.IntegerField(verbose_name="State", default=ReportState.CREATED.value)
     cfi_remarks = models.TextField(verbose_name="Remarks", default='', null=True, blank=True)
     cfi_reviewer = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True,
