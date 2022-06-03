@@ -75,6 +75,7 @@ class _measurement_section_reports_admin(Abstract_UI_Page):
                 _list = ui_list_element(_history, ordered=False)
                 __histories.addBasicElement(_list)
 
+
                 res.append(__histories)
 
                 ################

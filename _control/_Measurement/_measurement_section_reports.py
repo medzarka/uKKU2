@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.models import User
 
+
 from _data._data_measurement import MeasurementReviewerAffectations
 
 from _control.AbstractPage import Abstract_UI_Page

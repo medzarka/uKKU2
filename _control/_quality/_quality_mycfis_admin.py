@@ -252,6 +252,7 @@ class _page_mycfis_admin(Abstract_UI_Page):
                     except _report.DoesNotExist:
                         pass
 
+
                 _list = Course_CFI.objects.filter(gradeFile__semester=_actual_semester)
 
                 if len(_list) > 0:
