@@ -33,7 +33,7 @@ DEBUG = site_conf.site_DEBUG_MODE
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', site_conf.site_dns_url]
 
 # Application definition
-INSTALLED_APPS = []
+INSTALLED_APPS = [ ]
 if site_conf.MYSITE_ADMIN_TEMPLATE == 'GRAPPELLI':
     INSTALLED_APPS = ['grappelli', ]
 if site_conf.MYSITE_ADMIN_TEMPLATE == 'ADMIN_INTERFACE':
