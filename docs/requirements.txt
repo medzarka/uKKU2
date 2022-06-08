@@ -54,7 +54,7 @@ mahotas==1.4.12
 MarkupPy==1.14
 MarkupSafe==2.0.1
 matplotlib
-networkx==2.6.3
+networkx
 nltk==3.6.7
 odfpy==1.4.1
 openpyxl==3.0.10
