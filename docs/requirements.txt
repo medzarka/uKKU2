@@ -53,7 +53,7 @@ lxml==4.7.1
 mahotas==1.4.12
 MarkupPy==1.14
 MarkupSafe==2.0.1
-matplotlib==3.5.1
+matplotlib
 networkx==2.6.3
 nltk==3.6.7
 odfpy==1.4.1
