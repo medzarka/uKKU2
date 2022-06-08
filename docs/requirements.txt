@@ -31,7 +31,7 @@ django-thread==0.0.1
 docxcompose==1.3.4
 docxtpl==0.15.1
 et-xmlfile==1.1.0
-fonttools==4.28.5
+fonttools
 future==0.18.2
 gunicorn==20.1.0
 h11==0.9.0
