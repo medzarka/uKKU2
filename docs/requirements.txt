@@ -48,7 +48,7 @@ Jinja2==3.0.3
 joblib==1.1.0
 JSON-minify==0.3.0
 kiwisolver
-kombu==5.2.4
+kombu
 lxml==4.7.1
 mahotas==1.4.12
 MarkupPy==1.14
