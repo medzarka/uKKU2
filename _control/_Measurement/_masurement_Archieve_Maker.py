@@ -56,7 +56,8 @@ class MeasurementArchiveMakerThread(threading.Thread):
                 try:
                     _tmp_dir = os.path.join(_basedir, 'sections', f'{_report.campus_name}')
                     self.createDir(_tmp_dir)
-                    dst = os.path.join(_tmp_dir, f'section_{_report.section_code}.doc')
+                    dst = os.path.join(_tmp_dir,
+                                       f'section_{_report.section_code}__({_report.section_courseObj.course_code}__{_report.section_courseObj.course_name}).doc')
                     shutil.copyfile(_report.report_file.path, dst)
                 except ValueError:
                     pass
