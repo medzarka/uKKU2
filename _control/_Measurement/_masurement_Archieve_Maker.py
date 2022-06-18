@@ -94,6 +94,7 @@ class MeasurementArchiveMakerThread(threading.Thread):
             _export.save()
 
         except:
+            self.logger.error(f'Error in creating the archive file !')
             end_time = datetime.now()
             _export.state = -1
             _export.elapsedTime = '{}'.format(end_time - start_time)
