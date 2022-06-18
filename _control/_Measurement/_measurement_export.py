@@ -174,16 +174,29 @@ class _page_measuerement_export(Abstract_UI_Page):
                     _cell1 = table_cell(cell_centent=_text1)
                     _row.add_cell_to_row(_cell1)
 
+
+
                     _text1 = ui_text_element(text=_textToAdd,
                                              color=UI_TEXT_COLOR_Enum.TEXT_DARK)
                     _cell1 = table_cell(cell_centent=_text1)
                     _row.add_cell_to_row(_cell1)
 
+                    try:
+                        _text1 = ui_text_element(text='View', alert=UI_Text_Alert_Type.ALERT_LIGHT,
+                                                 color=UI_TEXT_COLOR_Enum.TEXT_DARK,
+                                                 link_url=_rep.report_file.url)
+                        _cell1 = table_cell(cell_centent=_text1)
+                        _row.add_cell_to_row(_cell1)
+
+                    except ValueError:
+                        _text1 = ui_text_element(text='')
+                        _cell1 = table_cell(cell_centent=_text1)
+                        _row.add_cell_to_row(_cell1)
                     _rows.append(_row)
 
                 _table = ui_table_element(table_rows=_rows,
                                           table_header=['Id', 'Campus', 'Department', 'Faculty', 'section', 'Course',
-                                                        'Status'],
+                                                        'Status', 'Report'],
                                           table_has_footer=False,
                                           table_is_striped=True,
                                           table_is_hover=True, table_is_bordered=True)
