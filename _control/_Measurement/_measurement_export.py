@@ -125,7 +125,10 @@ class _page_measuerement_export(Abstract_UI_Page):
                                                       teacher=_section.teacher,
                                                       section_courseObj=_section.course)
 
-                        ____my_report_url = _rep.report_file.url
+                        try:
+                            ____my_report_url = _rep.report_file.url
+                        except ValueError:
+                            ____my_report_url = None
 
                         if _rep.is_validated():
                             _row = table_row(row_class=UI_Row_Cell_Class_Enum.TABLE_SUCCESS)
