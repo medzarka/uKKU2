@@ -57,6 +57,8 @@ class MeasurementArchiveMakerThread(threading.Thread):
             self.createDir(_departments_dir)
             self.logger.debug(f'creating the tmp directory in {_basedir}')
 
+            self.logger.debug(f'[1] - Working with the Section Reports.')
+
             for _report in GradesFile.objects.filter(semester=self._selected_semester):
                 try:
                     _tmp_dir = os.path.join(_basedir, 'sections', f'{_report.campus_name}')
@@ -68,6 +70,7 @@ class MeasurementArchiveMakerThread(threading.Thread):
                 except ValueError as e:
                     self.logger.exception(e)
                     self.logger.error(f'error for making section report to {dst}')
+            self.logger.debug(f'[2] - Working with the Course Reports.')
             for _report in CourseFile.objects.filter(semester=self._selected_semester):
                 try:
                     dst = os.path.join(_courses_dir, f'course_{_report.course_name}.doc')
@@ -76,6 +79,8 @@ class MeasurementArchiveMakerThread(threading.Thread):
                 except ValueError as e:
                     self.logger.exception(e)
                     self.logger.error(f'error for making course report to {dst}')
+
+            self.logger.debug(f'[3] - Working with the Department Reports.')
             for _report in DepartmentFile.objects.filter(semester=self._selected_semester):
                 try:
                     dst = os.path.join(_departments_dir, f'department_{_report.department.department_name}.doc')
@@ -85,6 +90,7 @@ class MeasurementArchiveMakerThread(threading.Thread):
                     self.logger.exception(e)
                     self.logger.error(f'error for making department report to {dst}')
 
+            self.logger.debug(f'[4] - Working with the Zip file.')
             source = _basedir
             destination = _basedir + '.zip'
             self.make_archive(source, destination)
@@ -95,8 +101,10 @@ class MeasurementArchiveMakerThread(threading.Thread):
             _export.elapsedTime = '{}'.format(end_time - start_time)
             _export.state = 1
             _export.save()
+            self.logger.debug(f'[5] - Archive created.')
 
-        except:
+        except Exception as e:
+            self.logger.exception(e)
             self.logger.error(f'Error in creating the archive file !')
             end_time = datetime.now()
             _export.state = -1
