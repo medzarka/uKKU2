@@ -125,6 +125,8 @@ class _page_measuerement_export(Abstract_UI_Page):
                                                       teacher=_section.teacher,
                                                       section_courseObj=_section.course)
 
+                        ____my_report_url = _rep.report_file.url
+
                         if _rep.is_validated():
                             _row = table_row(row_class=UI_Row_Cell_Class_Enum.TABLE_SUCCESS)
                             _number_accepted += 1
@@ -184,7 +186,7 @@ class _page_measuerement_export(Abstract_UI_Page):
                     try:
                         _text1 = ui_text_element(text='View', alert=UI_Text_Alert_Type.ALERT_LIGHT,
                                                  color=UI_TEXT_COLOR_Enum.TEXT_DARK,
-                                                 link_url=_rep.report_file.url)
+                                                 link_url=____my_report_url)
                         _cell1 = table_cell(cell_centent=_text1)
                         _row.add_cell_to_row(_cell1)
 
