@@ -20,6 +20,7 @@ from django.urls import path, re_path
 from django.conf import settings
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django_db_logger.views import __gen_500_errors
 
 from _web import views
 
@@ -27,6 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.dashboard, name='index_0'),
     re_path('web/', include('_web.urls')),
+    path('__gen_500/', __gen_500_errors),
 ]
 
 if settings.MYSITE_ADMIN_TEMPLATE == 'GRAPPELLI':
