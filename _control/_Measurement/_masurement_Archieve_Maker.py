@@ -98,3 +98,4 @@ class MeasurementArchiveMakerThread(threading.Thread):
             _export.state = -1
             _export.elapsedTime = '{}'.format(end_time - start_time)
             _export.save()
+
