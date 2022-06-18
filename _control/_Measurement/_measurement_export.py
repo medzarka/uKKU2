@@ -145,6 +145,7 @@ class _page_measuerement_export(Abstract_UI_Page):
                         _row = table_row(row_class=UI_Row_Cell_Class_Enum.TABLE_DANGER)
                         _textToAdd = 'Not yet Uploaded'
                         _number_not_uploaded += 1
+                        ____my_report_url = None
 
                     _text1 = ui_text_element(text=str(_section.meeting_id),
                                              color=UI_TEXT_COLOR_Enum.TEXT_DARK)
@@ -183,14 +184,14 @@ class _page_measuerement_export(Abstract_UI_Page):
                     _cell1 = table_cell(cell_centent=_text1)
                     _row.add_cell_to_row(_cell1)
 
-                    try:
+                    if ____my_report_url is not None:
                         _text1 = ui_text_element(text='View', alert=UI_Text_Alert_Type.ALERT_LIGHT,
                                                  color=UI_TEXT_COLOR_Enum.TEXT_DARK,
                                                  link_url=____my_report_url)
                         _cell1 = table_cell(cell_centent=_text1)
                         _row.add_cell_to_row(_cell1)
 
-                    except ValueError:
+                    else:
                         _text1 = ui_text_element(text='')
                         _cell1 = table_cell(cell_centent=_text1)
                         _row.add_cell_to_row(_cell1)
