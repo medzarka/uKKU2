@@ -261,3 +261,4 @@ site_conf.createDir(BACKUP_DIR)
 DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_STORAGE_OPTIONS = {'location': BACKUP_DIR}
 print(f'[DIR] the backup dir is {os.path.join(DATA_DIR, "backup")}')
+
