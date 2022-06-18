@@ -276,16 +276,3 @@ DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_STORAGE_OPTIONS = {'location': BACKUP_DIR}
 print(f'[DIR] the backup dir is {os.path.join(DATA_DIR, "backup")}')
 
-## test db logging
-import logging
-
-db_logger = logging.getLogger('db')
-
-db_logger.info('info message')
-db_logger.warning('warning message')
-
-try:
-    1 / 0
-    db_logger.info('1/0 done.')
-except Exception as e:
-    db_logger.exception(e)

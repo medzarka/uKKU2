@@ -35,6 +35,8 @@ class MeasurementArchiveMakerThread(threading.Thread):
     def run(self):
         start_time = datetime.now()
         try:
+            self.logger.debug(
+                f'Start creating the archive file for the semester {self._selected_semester} by the faculty {self._teacher} ')
             year_txt = self._selected_semester.semester_academic_year.academic_year_name.replace('-', '_')
             term_txt = self._selected_semester.semester_name.replace(' ', '')
 
@@ -53,6 +55,7 @@ class MeasurementArchiveMakerThread(threading.Thread):
             self.createDir(_sections_dir)
             self.createDir(_courses_dir)
             self.createDir(_departments_dir)
+            self.logger.debug(f'creating the tmp directory in {_basedir}')
 
             for _report in GradesFile.objects.filter(semester=self._selected_semester):
                 try:
@@ -99,4 +102,3 @@ class MeasurementArchiveMakerThread(threading.Thread):
             _export.state = -1
             _export.elapsedTime = '{}'.format(end_time - start_time)
             _export.save()
-
