@@ -44,6 +44,7 @@ INSTALLED_APPS += [
 
     'import_export',
     'dbbackup',  # django-dbbackup
+    'django_db_logger',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -212,7 +213,7 @@ LOGGING = {
     'handlers': {
         'db_log': {
             'level': 'DEBUG',
-            'class': '._data.db_log_handler.DatabaseLogHandler'
+            'class': 'django_db_logger.db_log_handler.DatabaseLogHandler'
         },
     },
     'loggers': {
@@ -227,6 +228,9 @@ LOGGING = {
         }
     }
 }
+DJANGO_DB_LOGGER_ENABLE_FORMATTER = True
+DJANGO_DB_LOGGER_ADMIN_LIST_PER_PAGE = 30
+
 print(f'[DIR] the log file is in {os.path.join(DATA_DIR, "log")}')
 
 # Default primary key field type
