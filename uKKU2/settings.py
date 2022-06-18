@@ -228,8 +228,6 @@ LOGGING = {
         }
     }
 }
-DJANGO_DB_LOGGER_ENABLE_FORMATTER = True
-DJANGO_DB_LOGGER_ADMIN_LIST_PER_PAGE = 30
 print(f'[DIR] the log file is in {os.path.join(DATA_DIR, "log")}')
 
 # Default primary key field type

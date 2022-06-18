@@ -1,20 +1,18 @@
 import logging
 
-from _data.config import DJANGO_DB_LOGGER_ENABLE_FORMATTER, MSG_STYLE_SIMPLE
+from _data._data_logging import StatusLog
 
 db_default_formatter = logging.Formatter()
 
 
 class DatabaseLogHandler(logging.Handler):
     def emit(self, record):
-        from .models import StatusLog
-
         trace = None
 
         if record.exc_info:
             trace = db_default_formatter.formatException(record.exc_info)
 
-        if DJANGO_DB_LOGGER_ENABLE_FORMATTER:
+        if True:
             msg = self.format(record)
         else:
             msg = record.getMessage()
