@@ -62,21 +62,24 @@ class MeasurementArchiveMakerThread(threading.Thread):
                                        f'section_{_report.section_code}__({_report.section_courseObj.course_code}__{_report.section_courseObj.course_name}).doc')
                     shutil.copyfile(_report.report_file.path, dst)
                     self.logger.info(f'making section report to {dst}')
-                except ValueError:
+                except ValueError as e:
+                    self.logger.exception(e)
                     self.logger.error(f'error for making section report to {dst}')
             for _report in CourseFile.objects.filter(semester=self._selected_semester):
                 try:
                     dst = os.path.join(_courses_dir, f'course_{_report.course_name}.doc')
                     shutil.copyfile(_report.report_file.path, dst)
                     self.logger.info(f'making course report to {dst}')
-                except ValueError:
+                except ValueError as e:
+                    self.logger.exception(e)
                     self.logger.error(f'error for making course report to {dst}')
             for _report in DepartmentFile.objects.filter(semester=self._selected_semester):
                 try:
                     dst = os.path.join(_departments_dir, f'department_{_report.department.department_name}.doc')
                     shutil.copyfile(_report.report_file.path, dst)
                     self.logger.error(f'making department report to {dst}')
-                except ValueError:
+                except ValueError as e:
+                    self.logger.exception(e)
                     self.logger.error(f'error for making department report to {dst}')
 
             source = _basedir
