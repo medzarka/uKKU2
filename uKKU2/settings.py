@@ -33,7 +33,7 @@ DEBUG = site_conf.site_DEBUG_MODE
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', site_conf.site_dns_url]
 
 # Application definition
-INSTALLED_APPS = [ ]
+INSTALLED_APPS = []
 if site_conf.MYSITE_ADMIN_TEMPLATE == 'GRAPPELLI':
     INSTALLED_APPS = ['grappelli', ]
 if site_conf.MYSITE_ADMIN_TEMPLATE == 'ADMIN_INTERFACE':
@@ -106,11 +106,11 @@ DATABASES = {
         'PASSWORD': site_conf.site_BD_PASSWORD,
         'HOST': site_conf.site_BD_HOST,
         'PORT': site_conf.site_BD_PORT,
-        #'OPTIONS': {
+        # 'OPTIONS': {
         #    'init_command': "SET sql_mode='STRICT_TRANS_TABLES', innodb_strict_mode=1",
         #    'charset': 'utf8mb4',
         #    "autocommit": True,
-        #}
+        # }
 
     }
 }
@@ -221,7 +221,7 @@ LOGGING = {
             'handlers': ['db_log'],
             'level': 'DEBUG'
         },
-        'django.request': { # logging 500 errors to database
+        'django.request': {  # logging 500 errors to database
             'handlers': ['db_log'],
             'level': 'ERROR',
             'propagate': False,
@@ -266,7 +266,6 @@ ADMIN_SITE_SITE_HEADER = site_conf.MYSITE_ADMIN_SITE_HEADER
 ADMIN_SITE_INDEX_TITLE = site_conf.MYSITE_ADMIN_SITE_INDEX_TITLE
 ADMIN_SITE_SITE_TITLE = site_conf.MYSITE_ADMIN_SITE_TITLE
 
-
 ##### database and media backup
 BACKUP_DIR = os.path.join(os.path.join(DATA_DIR, 'backup'))
 site_conf.createDir(BACKUP_DIR)
@@ -274,3 +273,16 @@ DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_STORAGE_OPTIONS = {'location': BACKUP_DIR}
 print(f'[DIR] the backup dir is {os.path.join(DATA_DIR, "backup")}')
 
+## test db logging
+import logging
+
+db_logger = logging.getLogger('db')
+
+db_logger.info('info message')
+db_logger.warning('warning message')
+
+try:
+    1 / 0
+    db_logger.info('1/0 done.')
+except Exception as e:
+    db_logger.exception(e)
