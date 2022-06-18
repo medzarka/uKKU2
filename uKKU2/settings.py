@@ -44,6 +44,7 @@ INSTALLED_APPS += [
 
     'import_export',
     'dbbackup',  # django-dbbackup
+    'django_db_logger',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -200,21 +201,32 @@ SECURE_SSL_REDIRECT = site_conf.site_SECURE_SSL_REDIRECT
 site_conf.createDir(os.path.join(DATA_DIR, 'log'))
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': True,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(asctime)s %(message)s'
+        },
+    },
     'handlers': {
-        'file': {
-            'level': 'INFO',
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(DATA_DIR, 'log', 'trace.log'),
+        'db_log': {
+            'level': 'DEBUG',
+            'class': 'django_db_logger.db_log_handler.DatabaseLogHandler'
         },
     },
     'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'level': 'INFO',
-            'propagate': False,
+        'db': {
+            'handlers': ['db_log'],
+            'level': 'DEBUG'
         },
-    },
+        'django.request': { # logging 500 errors to database
+            'handlers': ['db_log'],
+            'level': 'ERROR',
+            'propagate': False,
+        }
+    }
 }
 print(f'[DIR] the log file is in {os.path.join(DATA_DIR, "log")}')
 
