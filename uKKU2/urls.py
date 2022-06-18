@@ -20,7 +20,7 @@ from django.urls import path, re_path
 from django.conf import settings
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django_db_logger.views import __gen_500_errors
+from _web.views import __gen_500_errors
 
 from _web import views
 

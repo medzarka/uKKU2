@@ -50,6 +50,11 @@ import xlsxwriter
 
 from io import BytesIO
 
+import logging
+
+
+logger = logging.getLogger('db')
+
 
 def change_semester(request):
     semester_id = request.POST['semester']
@@ -526,3 +531,12 @@ def generate_zipped_quality_reports_list(request):
 
     __page = _page_quality_export(request, 'quality_export')
     return render(request, "base.html", __page.getContext())
+
+
+def __gen_500_errors(request):
+    try:
+        1/0
+    except Exception as e:
+        logger.exception(e)
+
+    return HttpResponse('Hello 500!')
