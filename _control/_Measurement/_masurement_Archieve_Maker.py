@@ -1,5 +1,6 @@
 import threading
 import time
+import logging
 import shutil
 import os
 from _data._data_measurement import GradesFile, CourseFile, DepartmentFile, MeasurementExportFile
@@ -14,6 +15,7 @@ class MeasurementArchiveMakerThread(threading.Thread):
         threading.Thread.__init__(self)
         self._selected_semester = semester
         self._teacher = teacher
+        self.logger = logging.getLogger(__name__)
 
     def make_archive(self, source, destination):
         base_name = '.'.join(destination.split('.')[:-1])
@@ -59,18 +61,24 @@ class MeasurementArchiveMakerThread(threading.Thread):
                     dst = os.path.join(_tmp_dir,
                                        f'section_{_report.section_code}__({_report.section_courseObj.course_code}__{_report.section_courseObj.course_name}).doc')
                     shutil.copyfile(_report.report_file.path, dst)
+                    print(f'copy section report to {dst}')
+                    self.logger.info(f'copy section report to {dst}')
                 except ValueError:
                     pass
             for _report in CourseFile.objects.filter(semester=self._selected_semester):
                 try:
                     dst = os.path.join(_courses_dir, f'course_{_report.course_name}.doc')
                     shutil.copyfile(_report.report_file.path, dst)
+                    print(f'copy course report to {dst}')
+                    self.logger.info(f'copy course report to {dst}')
                 except ValueError:
                     pass
             for _report in DepartmentFile.objects.filter(semester=self._selected_semester):
                 try:
                     dst = os.path.join(_departments_dir, f'department_{_report.department.department_name}.doc')
                     shutil.copyfile(_report.report_file.path, dst)
+                    print(f'copy department report to {dst}')
+                    self.logger.info(f'copy department report to {dst}')
                 except ValueError:
                     pass
 
