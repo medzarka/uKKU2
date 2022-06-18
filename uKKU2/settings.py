@@ -44,7 +44,6 @@ INSTALLED_APPS += [
 
     'import_export',
     'dbbackup',  # django-dbbackup
-    'django_db_logger',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -213,7 +212,7 @@ LOGGING = {
     'handlers': {
         'db_log': {
             'level': 'DEBUG',
-            'class': '_data.db_log_handler.DatabaseLogHandler'
+            'class': '._data.db_log_handler.DatabaseLogHandler'
         },
     },
     'loggers': {
