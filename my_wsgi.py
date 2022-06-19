@@ -1,0 +1,1 @@
+from uKKU2.wsgi import application
