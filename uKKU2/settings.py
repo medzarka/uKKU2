@@ -18,8 +18,11 @@ from django.utils.module_loading import import_string
 try:
     conf_filename = os.getenv('django_site_configurations')
     site_conf = import_string(f'uKKU2.{conf_filename}')
+    print(f'Configuration Site in file {conf_filename}.')
 except:
     import uKKU2.site_conf as site_conf
+
+    print(f'Configuration Site in file "site_conf".')
 
 ##" https://github.com/medzarka/uKKU2.git
 
