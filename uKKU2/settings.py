@@ -34,7 +34,6 @@ except:
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False),
-    SITE_ADMIN_TEMPLATE=(str, 'GRAPPELLI'),
     SITE_DATA_PATH=(str, 'data'),
     SESSION_EXPIRE_AT_BROWSER_CLOSE=(bool, False),
     SESSION_COOKIE_AGE=(int, 3600),
@@ -45,6 +44,10 @@ env = environ.Env(
     SECURE_HSTS_SECONDS=(int, 2592000),
     SECURE_HSTS_INCLUDE_SUBDOMAINS=(bool, True),
     SECURE_HSTS_PRELOAD=(bool, True),
+    SITE_ADMIN_TEMPLATE=(str, 'GRAPPELLI'),
+    SITE_ADMIN_SITE_TITLE=(str, 'uKKU2 Quality Document Manager'),
+    SITE_ADMIN_SITE_HEADER=(str, 'uKKU (ver.2) Admin'),
+    SITE_ADMIN_SITE_INDEX_TITLE=(str, 'Welcome to uKKU2 Admin'),
 )
 env.read_env(os.path.join(BASE_DIR, env_filename))
 ##" https://github.com/medzarka/uKKU2.git
