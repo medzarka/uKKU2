@@ -11,8 +11,18 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 from pathlib import Path
 import os
+from django.utils.module_loading import import_string
 
-import uKKU2.site_conf as site_conf
+
+
+try:
+    conf_filename = os.getenv('django_site_configurations')
+    site_conf = import_string(f'uKKU2.{conf_filename}')
+except:
+    import uKKU2.site_conf as site_conf
+
+##" https://github.com/medzarka/uKKU2.git
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
