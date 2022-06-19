@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import sys
 from pathlib import Path
 import environ
 import os
@@ -30,6 +31,10 @@ try:
 except:
     env_filename = '.env'
     print(f'Configuration Site in file "site_conf".')
+
+if not os.path.exists(os.path.join(BASE_DIR, env_filename)):
+    print('The env filename {env_filename} does not exists!')
+    sys.exit(-1)
 
 env = environ.Env(
     # set casting, default value
