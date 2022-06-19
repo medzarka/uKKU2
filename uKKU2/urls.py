@@ -31,7 +31,7 @@ urlpatterns = [
     path('__gen_500/', __gen_500_errors),
 ]
 
-if settings.MYSITE_ADMIN_TEMPLATE == 'GRAPPELLI':
+if settings.SITE_ADMIN_TEMPLATE == 'GRAPPELLI':
     urlpatterns += [re_path(r'^grappelli/', include('grappelli.urls')), ]
 
 admin.site.site_header = settings.ADMIN_SITE_SITE_HEADER
@@ -43,5 +43,3 @@ urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 admin.autodiscover()
 admin.site.enable_nav_sidebar = False
-
-
