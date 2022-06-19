@@ -33,11 +33,11 @@ except:
     print(f'Configuration Site in file "site_conf".')
 
 if env_filename is None:
-    print('The env filename {env_filename} is not set !')
+    print(f'The env filename "env_filename" is not set !')
     sys.exit(-1)
 
 if not os.path.exists(os.path.join(BASE_DIR, env_filename)):
-    print('The env filename {env_filename} does not exists!')
+    print(f'The env filename {env_filename} does not exists!')
     sys.exit(-1)
 
 env = environ.Env(
