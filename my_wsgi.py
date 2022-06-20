@@ -1,1 +1,4 @@
-from uKKU2.wsgi import application
+import os
+import sys
+from uKKU2 import wsgi
+application = wsgi.applicationn
