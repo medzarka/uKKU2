@@ -71,12 +71,12 @@ print(f'[DIR] the data dir is {DATA_DIR}')
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env.str('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = env.bool('DEBUG')
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', env(str, 'SITE_URL')]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', env.str('SITE_URL')]
 
 # Application definition
 INSTALLED_APPS = []
@@ -144,14 +144,30 @@ WSGI_APPLICATION = 'uKKU2.wsgi.application'
 #    }
 # }
 
-DATABASES = {
-    'default': env.db(),
-}
+if env.str('DATABASE_URL', default=''):
+    DATABASES = {
+        'default': env.db(),
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': DATA_DIR.path('db')('django.sqlite3'),
+        },
+    }
+
 
 CACHES = {
-    # The cache() method is an alias for cache_url().
-    'default': env.cache(),
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'my_cache_table',
+    }
 }
+
+#CACHES = {
+#    # The cache() method is an alias for cache_url().
+#    'default': env.cache(),
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
