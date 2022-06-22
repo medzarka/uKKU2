@@ -1,4 +1,7 @@
 import os
-import sys
-from uKKU2 import wsgi
-application = wsgi.application
+
+from django.core.wsgi import get_wsgi_application
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'uKKU2.settings')
+
+application = get_wsgi_application()
