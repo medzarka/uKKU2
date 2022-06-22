@@ -2,7 +2,7 @@
 
 ################# for passwords and configurations
 uKKU2/site_conf.py
-environs/**
+**/*.env
 docs/passwords.txt
 
 
