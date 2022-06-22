@@ -25,20 +25,20 @@ def createDir(dirname):
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-if 'env_filename' in os.environ.keys():
-    env_filename = os.path.join(BASE_DIR, 'env', os.getenv('env_filename'))
-    print(f'Configuration Site in file {env_filename}.')
+if 'env_file' in os.environ.keys():
+    env_file = os.path.join(BASE_DIR, 'env', os.getenv('env_file'))
+    print(f'Configuration Site in file {env_file}.')
 else:
-    env_filename = '.env'
-    env_filename = os.path.join(BASE_DIR, 'env', 'env')
-    print(f'Configuration Site in file {env_filename}.')
+    env_file = 'env'
+    env_file = os.path.join(BASE_DIR, 'env', 'env')
+    print(f'Configuration Site in file {env_file}.')
 
-if env_filename is None:
-    print(f'The env filename "env_filename" is not set !')
+if env_file is None:
+    print(f'The env filename "env_file" is not set !')
     sys.exit(-1)
 
-if not os.path.exists(os.path.join(BASE_DIR, env_filename)):
-    print(f'The env filename {env_filename} does not exists!')
+if not os.path.exists(os.path.join(BASE_DIR, env_file)):
+    print(f'The env filename {env_file} does not exist!')
     sys.exit(-1)
 
 env = environ.Env(
@@ -59,7 +59,7 @@ env = environ.Env(
     SITE_ADMIN_SITE_HEADER=(str, 'uKKU (ver.2) Admin'),
     SITE_ADMIN_SITE_INDEX_TITLE=(str, 'Welcome to uKKU2 Admin'),
 )
-env.read_env(os.path.join(BASE_DIR, env_filename))
+env.read_env(os.path.join(BASE_DIR, env_file))
 ##" https://github.com/medzarka/uKKU2.git
 
 
