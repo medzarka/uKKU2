@@ -2,6 +2,7 @@
 
 ################# for passwords and configurations
 uKKU2/site_conf.py
+environs/
 docs/passwords.txt
 
 ################# for python, django and pycharm

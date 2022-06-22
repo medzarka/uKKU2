@@ -25,12 +25,13 @@ def createDir(dirname):
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-try:
-    env_filename = os.getenv('env_filename')
+if 'env_filename' in os.environ.keys():
+    env_filename = os.path.join(BASE_DIR, 'environs', os.getenv('env_filename'))
     print(f'Configuration Site in file {env_filename}.')
-except:
+else:
     env_filename = '.env'
-    print(f'Configuration Site in file "site_conf".')
+    env_filename = os.path.join(BASE_DIR, 'environs', 'env')
+    print(f'Configuration Site in file {env_filename}.')
 
 if env_filename is None:
     print(f'The env filename "env_filename" is not set !')

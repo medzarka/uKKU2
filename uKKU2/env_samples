@@ -8,7 +8,7 @@ SITE_ADMIN_SITE_HEADER=uKKU (ver.2) Admin
 SITE_ADMIN_SITE_INDEX_TITLE=Welcome to uKKU2 Admin
 
 
-DATABASE_URL=mysql://user:un-githubbedpassword@127.0.0.1:8458/database
+DATABASE_URL=psql://user:un-githubbedpassword@127.0.0.1:8458/database
 CACHE_URL=memcache://127.0.0.1:11211,127.0.0.1:11212,127.0.0.1:11213
 EMAIL_URL=smtp+tls://user:password@localhost:25
 
