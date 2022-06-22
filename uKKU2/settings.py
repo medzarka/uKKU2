@@ -26,11 +26,11 @@ def createDir(dirname):
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 if 'env_filename' in os.environ.keys():
-    env_filename = os.path.join(BASE_DIR, 'environs', os.getenv('env_filename'))
+    env_filename = os.path.join(BASE_DIR, 'env', os.getenv('env_filename'))
     print(f'Configuration Site in file {env_filename}.')
 else:
     env_filename = '.env'
-    env_filename = os.path.join(BASE_DIR, 'environs', 'env')
+    env_filename = os.path.join(BASE_DIR, 'env', 'env')
     print(f'Configuration Site in file {env_filename}.')
 
 if env_filename is None:
